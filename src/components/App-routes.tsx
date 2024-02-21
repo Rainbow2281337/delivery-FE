@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { authRoutes, publicRoutes } from "../Routes/shop_routes";
+import { authRoutes, publicRoutes } from "../Routes/shop-routes";
 import { DEFAULT_ROUTE } from "../routes";
 
 const AppRoutes = () => {
