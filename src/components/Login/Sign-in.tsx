@@ -10,25 +10,44 @@ import { IconButton, InputAdornment } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { REGISTRATION_ROUTE } from "../../routes";
+import { HOME_ROUTE, REGISTRATION_ROUTE } from "../../consts";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../state/auth/auth-slice";
+import { AppDispatch, RootState } from "../../state/store";
 
 const SignIn = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
+  const error = useSelector<RootState>((state) => state.auth.error);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const handleSubmit = (event: {
-    preventDefault: () => void;
-    currentTarget: HTMLFormElement | undefined;
-  }) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+
+    const formData = new FormData(event.currentTarget);
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
+    const credentials = {
+      email,
+      password,
+    };
+
+    try {
+      const actionResult = await dispatch(login(credentials));
+
+      if (login.fulfilled.match(actionResult)) {
+        // Successful login
+        navigate(HOME_ROUTE);
+      }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err: any) {
+      throw new Error(err);
+    }
   };
+
   return (
     <div className="h-screen flex items-center justify-center">
       <div className="bg-white/35 py-12 px-4 rounded-3xl m-3">
@@ -91,6 +110,13 @@ const SignIn = () => {
                   />
                 </Grid>
               </Grid>
+              <>
+                {error && (
+                  <Typography color="error" sx={{ mt: 1, fontSize: "18px" }}>
+                    {error}
+                  </Typography>
+                )}
+              </>
               <Button
                 type="submit"
                 fullWidth
