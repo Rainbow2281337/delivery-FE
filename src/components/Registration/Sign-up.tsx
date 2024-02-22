@@ -10,26 +10,41 @@ import { IconButton, InputAdornment } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { DEFAULT_ROUTE } from "../../routes";
+import { DEFAULT_ROUTE, HOME_ROUTE } from "../../consts";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../state/store";
+import { register } from "../../state/register/register-slice";
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const handleSubmit = (event: {
-    preventDefault: () => void;
-    currentTarget: HTMLFormElement | undefined;
-  }) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-      name: data.get("firstName"),
-      lastName: data.get("lastName"),
-    });
+
+    const formData = new FormData(event.currentTarget);
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
+    const credentials = {
+      email,
+      password,
+    };
+
+    try {
+      const actionResult = await dispatch(register(credentials));
+
+      if (register.fulfilled.match(actionResult)) {
+        // Successful register
+        navigate(HOME_ROUTE);
+      }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err: any) {
+      throw new Error(err);
+    }
   };
 
   return (

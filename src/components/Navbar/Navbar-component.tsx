@@ -7,7 +7,6 @@ import DeliveryDiningOutlinedIcon from "@mui/icons-material/DeliveryDiningOutlin
 
 const NavbarComponent = () => {
   const [value, setValue] = useState("home");
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const handleChange = (event: SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -16,7 +15,7 @@ const NavbarComponent = () => {
   return (
     <nav className="fixed bottom-0 w-full p-4">
       <div className="flex items-center justify-center">
-        <div className="min-w-full border-2 rounded-md py-1 md:border-0">
+        <div className="min-w-full">
           <BottomNavigation value={value} onChange={handleChange}>
             <BottomNavigationAction
               label="Main"
@@ -33,13 +32,11 @@ const NavbarComponent = () => {
               value="shopping cart"
               icon={<ShoppingCart fontSize="large" />}
             />
-            {isLoggedIn && (
-              <BottomNavigationAction
-                label="Profile"
-                value="profile"
-                icon={<AccountCircleOutlinedIcon fontSize="large" />}
-              />
-            )}
+            <BottomNavigationAction
+              label="Profile"
+              value="profile"
+              icon={<AccountCircleOutlinedIcon fontSize="large" />}
+            />
           </BottomNavigation>
         </div>
       </div>

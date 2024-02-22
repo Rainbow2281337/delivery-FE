@@ -1,7 +1,7 @@
 import Login from "../pages/Login/Login";
 import MainPage from "../pages/Main/Main-page";
 import Registration from "../pages/Registration/Registration";
-import { DEFAULT_ROUTE, HOME_ROUTE, REGISTRATION_ROUTE } from "../routes";
+import { DEFAULT_ROUTE, HOME_ROUTE, REGISTRATION_ROUTE } from "../consts";
 
 export const authRoutes = [
   {
