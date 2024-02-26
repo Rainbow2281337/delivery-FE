@@ -1,12 +1,12 @@
 import { useState, SyntheticEvent } from "react";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import { Home, ShoppingCart } from "@mui/icons-material";
+import { Home } from "@mui/icons-material";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import DeliveryDiningOutlinedIcon from "@mui/icons-material/DeliveryDiningOutlined";
 
 const NavbarComponent = () => {
-  const [value, setValue] = useState("home");
+  const [value, setValue] = useState("main");
 
   const handleChange = (event: SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -23,14 +23,9 @@ const NavbarComponent = () => {
               icon={<Home fontSize="large" />}
             />
             <BottomNavigationAction
-              label="Restaurants"
-              value="restaurants"
+              label="Food"
+              value="food"
               icon={<DeliveryDiningOutlinedIcon fontSize="large" />}
-            />
-            <BottomNavigationAction
-              label="Cart"
-              value="shopping cart"
-              icon={<ShoppingCart fontSize="large" />}
             />
             <BottomNavigationAction
               label="Profile"
