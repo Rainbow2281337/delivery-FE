@@ -19,10 +19,7 @@ const initialState: UserAuthTokenState = {
 
 export const login = createAsyncThunk(
   "auth/login",
-  async (
-    credentials: { email: string; password: string },
-    { rejectWithValue }
-  ) => {
+  async (credentials: { email: string; password: string }) => {
     try {
       const response = await axios.post<Token>(
         `${PROXY}auth/login`,
@@ -36,7 +33,15 @@ export const login = createAsyncThunk(
       return response.data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      return rejectWithValue(error.response.data.message || "Network error");
+      if (
+        error.response &&
+        error.response.status >= 400 &&
+        error.response.status < 500
+      ) {
+        throw new Error(error.response?.data.message);
+      } else {
+        return error.response?.data.message || "Network error";
+      }
     }
   }
 );
@@ -59,10 +64,12 @@ const authSlice = createSlice({
 
         sessionStorage.setItem("access_token", action.payload.access_token);
       })
-      .addCase(login.rejected, (state) => {
+      .addCase(login.rejected, (state, action) => {
         state.status = "failed";
         state.isAuthenticated = false;
-        state.error = "Email or password is incorrect";
+        state.error = action.error.message || "Network error";
+
+        sessionStorage.removeItem("access_token");
       });
   },
 });

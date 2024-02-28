@@ -5,7 +5,7 @@ const MainPage = () => {
   return (
     <>
       <TopBar />
-      <NavbarComponent />
+      <NavbarComponent clickedPageValue="main" />
     </>
   );
 };

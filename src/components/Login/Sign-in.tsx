@@ -6,7 +6,7 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { IconButton, InputAdornment } from "@mui/material";
+import { Alert, IconButton, InputAdornment, Snackbar } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -18,8 +18,11 @@ import { AppDispatch, RootState } from "../../state/store";
 const SignIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-  const error = useSelector<RootState>((state) => state.auth.error);
+  const errorMessage: string | null = useSelector<RootState, string | null>(
+    (state) => state.auth.error
+  );
   const [showPassword, setShowPassword] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -38,14 +41,21 @@ const SignIn = () => {
     try {
       const actionResult = await dispatch(login(credentials));
 
-      if (login.fulfilled.match(actionResult)) {
+      if (actionResult.payload) {
         // Successful login
         navigate(HOME_ROUTE);
       }
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (err: any) {
-      throw new Error(err);
+    } catch (error) {
+      console.error(error);
     }
+  };
+
+  const handleChange = (event: React.FormEvent<HTMLFormElement>) => {
+    const formData = new FormData(event.currentTarget);
+
+    const password = formData.get("password") as string;
+
+    password.length > 3 ? setIsDisabled(false) : setIsDisabled(true);
   };
 
   return (
@@ -71,6 +81,7 @@ const SignIn = () => {
               component="form"
               noValidate
               onSubmit={handleSubmit}
+              onChange={handleChange}
               sx={{ mt: 3 }}
             >
               <Grid container spacing={2}>
@@ -110,17 +121,11 @@ const SignIn = () => {
                   />
                 </Grid>
               </Grid>
-              <>
-                {error && (
-                  <Typography color="error" sx={{ mt: 1, fontSize: "18px" }}>
-                    {error}
-                  </Typography>
-                )}
-              </>
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
+                disabled={isDisabled}
                 sx={{ mt: 3, mb: 2, borderRadius: "10px", fontSize: "18px" }}
               >
                 Sign In
@@ -141,6 +146,11 @@ const SignIn = () => {
           </Box>
         </Container>
       </div>
+      {errorMessage && (
+        <Snackbar open={errorMessage.length > 0}>
+          <Alert severity="error">{errorMessage}</Alert>
+        </Snackbar>
+      )}
     </div>
   );
 };
