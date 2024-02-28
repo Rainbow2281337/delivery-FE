@@ -18,11 +18,15 @@ const initialState: UserRegisterTokenState = {
 };
 
 export const register = createAsyncThunk(
-  "auth/login",
-  async (
-    credentials: { email: string; password: string },
-    { rejectWithValue }
-  ) => {
+  "auth/register",
+  async (credentials: {
+    email: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+    address: string;
+    phoneNumber: string;
+  }) => {
     try {
       const response = await axios.post<Token>(
         `${PROXY}auth/register`,
@@ -33,10 +37,19 @@ export const register = createAsyncThunk(
           },
         }
       );
+
       return response.data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      return rejectWithValue(error.response.data.message || "Network error");
+      if (
+        error.response &&
+        error.response.status >= 400 &&
+        error.response.status < 500
+      ) {
+        throw new Error(error.response?.data.message);
+      } else {
+        return error.response?.data.message || "Network error";
+      }
     }
   }
 );
@@ -62,7 +75,9 @@ const registerSlice = createSlice({
       .addCase(register.rejected, (state, action) => {
         state.status = "failed";
         state.isAuthenticated = false;
-        state.error = action.error.message!;
+        state.error = action.error.message || "Network error";
+
+        sessionStorage.removeItem("access_token");
       });
   },
 });

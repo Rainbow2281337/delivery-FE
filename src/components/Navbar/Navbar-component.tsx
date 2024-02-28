@@ -1,12 +1,21 @@
 import { useState, SyntheticEvent } from "react";
+import { Home } from "@mui/icons-material";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import { Home } from "@mui/icons-material";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import DeliveryDiningOutlinedIcon from "@mui/icons-material/DeliveryDiningOutlined";
+import { useNavigate } from "react-router-dom";
+import { HOME_ROUTE, PROFILE_ROUTE } from "../../consts";
 
-const NavbarComponent = () => {
-  const [value, setValue] = useState("main");
+interface NavbarComponentProps {
+  clickedPageValue: string;
+}
+
+const NavbarComponent: React.FC<NavbarComponentProps> = ({
+  clickedPageValue,
+}) => {
+  const [value, setValue] = useState(clickedPageValue);
+  const navigate = useNavigate();
 
   const handleChange = (event: SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -20,6 +29,7 @@ const NavbarComponent = () => {
             <BottomNavigationAction
               label="Main"
               value="main"
+              onClick={() => navigate(HOME_ROUTE)}
               icon={<Home fontSize="large" />}
             />
             <BottomNavigationAction
@@ -30,6 +40,7 @@ const NavbarComponent = () => {
             <BottomNavigationAction
               label="Profile"
               value="profile"
+              onClick={() => navigate(PROFILE_ROUTE)}
               icon={<AccountCircleOutlinedIcon fontSize="large" />}
             />
           </BottomNavigation>
