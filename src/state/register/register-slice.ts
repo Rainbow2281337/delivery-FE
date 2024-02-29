@@ -17,6 +17,10 @@ const initialState: UserRegisterTokenState = {
   error: null,
 };
 
+const instance = axios.create({
+  baseURL: PROXY,
+});
+
 export const register = createAsyncThunk(
   "auth/register",
   async (credentials: {
@@ -28,8 +32,8 @@ export const register = createAsyncThunk(
     phoneNumber: string;
   }) => {
     try {
-      const response = await axios.post<Token>(
-        `${PROXY}auth/register`,
+      const response = await instance.post<Token>(
+        "auth/register",
         JSON.stringify(credentials),
         {
           headers: {

@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios, { InternalAxiosRequestConfig } from "axios";
 import { User } from "./interfaces/user-profile-interface";
 import { PROXY } from "../../consts";
 
@@ -9,6 +9,7 @@ interface UserProfileState extends User {
 }
 
 const initialState: UserProfileState = {
+  id: null,
   email: null,
   firstName: null,
   lastName: null,
@@ -19,28 +20,36 @@ const initialState: UserProfileState = {
   error: null,
 };
 
-const token = sessionStorage.getItem("access_token");
+const instance = axios.create({
+  baseURL: PROXY,
+});
 
-export const getProfileInfo = createAsyncThunk("auth/profile", async () => {
-  try {
-    const response = await axios.get<User>(`${PROXY}auth/profile`, {
-      headers: {
-        Authorization: `${token}`,
-      },
-    });
-    return response.data;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    if (
-      error.response &&
-      error.response.status >= 400 &&
-      error.response.status < 500
-    ) {
-      throw new Error(error.response?.data.message);
+instance.interceptors.request.use(
+  async (config: InternalAxiosRequestConfig) => {
+    const token = sessionStorage.getItem("access_token");
+
+    if (token) {
+      config.headers.Authorization = token;
+    }
+
+    return config;
+  },
+  (error) => {
+    if (axios.isAxiosError(error)) {
+      if (error.status === 401) {
+        return Promise.reject(error.response?.data);
+      }
     } else {
-      return error.response?.data.message || "Network error";
+      Promise.reject("Error occured, try again later");
     }
   }
+);
+
+export const getProfileInfo = createAsyncThunk("auth/profile", async () => {
+  const response = await instance.get<User>("auth/profile");
+
+  return response.data;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 });
 
 export const logout = (state: UserProfileState) => {
@@ -63,6 +72,7 @@ const getProfileInfoSlice = createSlice({
       })
       .addCase(getProfileInfo.fulfilled, (state, action) => {
         state.status = "succeeded";
+        state.id = action.payload.id;
         state.email = action.payload.email;
         state.firstName = action.payload.firstName;
         state.lastName = action.payload.lastName;
@@ -73,6 +83,13 @@ const getProfileInfoSlice = createSlice({
       .addCase(getProfileInfo.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message || "Network error";
+        state.id = null;
+        state.email = null;
+        state.firstName = null;
+        state.lastName = null;
+        state.address = null;
+        state.phoneNumber = null;
+        state.role = null;
       });
   },
 });

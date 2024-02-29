@@ -17,12 +17,16 @@ const initialState: UserAuthTokenState = {
   error: null,
 };
 
+const instance = axios.create({
+  baseURL: PROXY,
+});
+
 export const login = createAsyncThunk(
   "auth/login",
   async (credentials: { email: string; password: string }) => {
     try {
-      const response = await axios.post<Token>(
-        `${PROXY}auth/login`,
+      const response = await instance.post<Token>(
+        "auth/login",
         JSON.stringify(credentials),
         {
           headers: {

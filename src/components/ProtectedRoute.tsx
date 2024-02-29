@@ -15,7 +15,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   return children;
 };
 
-// if user already authenticated prevent him from going to the login + registration page
+// if user already authenticated prevent him from going to the login and registration page
 
 interface IfUserAuthProps {
   children: React.ReactNode;
