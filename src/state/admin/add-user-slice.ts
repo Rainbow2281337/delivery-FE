@@ -1,14 +1,14 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { InternalAxiosRequestConfig } from "axios";
 import { User } from "../../interfaces/user-interface";
 import { PROXY } from "../../consts";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-interface UserProfileState extends User {
+interface UserAddState extends User {
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
 }
 
-const initialState: UserProfileState = {
+const initialState: UserAddState = {
   id: null,
   email: null,
   firstName: null,
@@ -45,31 +45,42 @@ instance.interceptors.request.use(
   }
 );
 
-export const getProfileInfo = createAsyncThunk("auth/profile", async () => {
-  const response = await instance.get<User>("auth/profile");
+export const addUser = createAsyncThunk(
+  "user",
+  async (credentials: {
+    email: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+    address: string;
+    phoneNumber: string;
+    role: string;
+  }) => {
+    const response = await instance.post<User>(
+      "user",
+      JSON.stringify(credentials),
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-  return response.data;
-});
+    return response.data;
+  }
+);
 
-export const logout = (state: UserProfileState) => {
-  Object.assign(state, initialState);
-};
-
-const getProfileInfoSlice = createSlice({
-  name: "Profile info",
+const addUserSlice = createSlice({
+  name: "add",
   initialState,
-  reducers: {
-    logout: (state) => {
-      logout(state);
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getProfileInfo.pending, (state) => {
+      .addCase(addUser.pending, (state) => {
         state.status = "loading";
         state.error = null;
       })
-      .addCase(getProfileInfo.fulfilled, (state, action) => {
+      .addCase(addUser.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.id = action.payload.id;
         state.email = action.payload.email;
@@ -79,19 +90,11 @@ const getProfileInfoSlice = createSlice({
         state.phoneNumber = action.payload.phoneNumber;
         state.role = action.payload.role;
       })
-      .addCase(getProfileInfo.rejected, (state, action) => {
+      .addCase(addUser.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message || "Network error";
-        state.id = null;
-        state.email = null;
-        state.firstName = null;
-        state.lastName = null;
-        state.address = null;
-        state.phoneNumber = null;
-        state.role = null;
       });
   },
 });
 
-export const { logout: logoutAction } = getProfileInfoSlice.actions;
-export default getProfileInfoSlice.reducer;
+export default addUserSlice.reducer;

@@ -8,12 +8,13 @@ import {
 import { useEffect } from "react";
 import { Box, Button, CircularProgress } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { DEFAULT_ROUTE } from "../../consts";
+import { ADMIN_ROUTE, DEFAULT_ROUTE } from "../../consts";
 
 const ProfileComponent = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const status = useSelector<RootState>((state) => state.profileInfo.status);
+  const role = useSelector<RootState>((state) => state.profileInfo.role);
   const email: string | null = useSelector<RootState, string | null>(
     (state) => state.profileInfo.email
   );
@@ -68,9 +69,17 @@ const ProfileComponent = () => {
                   isEmail={true}
                 />
               </div>
-              <div className="mt-4 text-right">
+              <div className="flex items-center justify-end gap-2">
+                {role === "ADMIN" && (
+                  <Button
+                    variant="contained"
+                    onClick={() => navigate(ADMIN_ROUTE)}
+                  >
+                    Admin panel
+                  </Button>
+                )}
                 <Button
-                  variant="outlined"
+                  variant="contained"
                   color="error"
                   onClick={handleLogoutClick}
                 >
