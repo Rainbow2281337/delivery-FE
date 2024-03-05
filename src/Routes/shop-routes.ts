@@ -8,11 +8,13 @@ import {
   PROFILE_ROUTE,
   REGISTRATION_ROUTE,
   RESTAURANTS_ROUTE,
+  RESTAURANT_ROUTE,
 } from "../consts";
 import ProfilePage from "../pages/Profile/ProfilePage";
 import AdminPage from "../pages/Admin/AdminPage";
 import RestaurantsPage from "../pages/Restaurants/RestaurantsPage";
 import { RouteItem } from "../interfaces/routeItem-interface";
+import RestaurantPage from "../pages/Restaurants/RestaurantPage";
 
 export const authRoutes: RouteItem[] = [
   {
@@ -26,6 +28,10 @@ export const authRoutes: RouteItem[] = [
   {
     path: RESTAURANTS_ROUTE,
     Component: RestaurantsPage,
+  },
+  {
+    path: RESTAURANT_ROUTE + "/:id",
+    Component: RestaurantPage,
   },
 ];
 

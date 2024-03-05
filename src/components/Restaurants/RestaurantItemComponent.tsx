@@ -8,6 +8,8 @@ import {
   Chip,
   Typography,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { RESTAURANT_ROUTE } from "../../consts";
 
 interface RestaurantItemComponentProps {
   data: Restaurant;
@@ -16,6 +18,7 @@ interface RestaurantItemComponentProps {
 const RestaurantItemComponent: React.FC<RestaurantItemComponentProps> = ({
   data,
 }) => {
+  const navigate = useNavigate();
   return (
     <Card
       sx={{
@@ -24,7 +27,9 @@ const RestaurantItemComponent: React.FC<RestaurantItemComponentProps> = ({
         boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.1)",
       }}
     >
-      <CardActionArea>
+      <CardActionArea
+        onClick={() => navigate(RESTAURANT_ROUTE + "/" + data.id)}
+      >
         <CardMedia
           component="img"
           height="140"

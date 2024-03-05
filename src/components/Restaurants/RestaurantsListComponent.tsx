@@ -11,7 +11,7 @@ const RestaurantsListComponent = () => {
   const status = useSelector<RootState>((state) => state.getRestaurants.status);
 
   return (
-    <div className="w-[90%] mx-auto mt-16">
+    <div className="mt-16">
       {status === "loading" ? (
         <SkeletonComponent />
       ) : (
