@@ -7,21 +7,15 @@ import {
   DialogTitle,
 } from "@mui/material";
 import Search from "./Search";
-import { Restaurant } from "../../interfaces/mock-data-interface.";
-
-const mockData: Restaurant[] = [
-  { name: "HAMBURGER", category: "burgers" },
-  { name: "KENTUCKY", category: "burgers" },
-  { name: "CHEESE", category: "burgers" },
-  { name: "HAWAIIAN", category: "pizza" },
-];
+import { Restaurant } from "../../interfaces/restaurant-interface";
 
 interface ModalProps {
+  data: Restaurant[];
   isOpen: boolean;
   handleModal: () => void;
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, handleModal }) => {
+const Modal: React.FC<ModalProps> = ({ data, isOpen, handleModal }) => {
   return (
     <div>
       <Dialog open={isOpen} onClose={handleModal}>
@@ -32,7 +26,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, handleModal }) => {
           <DialogContentText sx={{ mb: "20px", fontSize: "18px" }}>
             Enter food name
           </DialogContentText>
-          <Search data={mockData} />
+          <Search data={data} />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleModal}>Cancel</Button>

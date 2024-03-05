@@ -4,6 +4,7 @@ export const REGISTRATION_ROUTE: string = "/registration";
 export const HOME_ROUTE: string = "/main";
 export const PROFILE_ROUTE: string = "/profile";
 export const ADMIN_ROUTE: string = "/admin";
+export const RESTAURANTS_ROUTE: string = "/restaurants";
 
 // PROXY
 export const PROXY: string = "http://localhost:3000/";

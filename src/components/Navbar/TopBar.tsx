@@ -1,19 +1,17 @@
 import { useState } from "react";
-import { Restaurant } from "../../interfaces/mock-data-interface.";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import Modal from "../ui/Modal";
 import Search from "../ui/Search";
 import logo from "../../assets/logo/logo.jpg";
-
-const mockData: Restaurant[] = [
-  { name: "HAMBURGER", category: "burgers" },
-  { name: "KENTUCKY", category: "burgers" },
-  { name: "CHEESE", category: "burgers" },
-  { name: "HAWAIIAN", category: "pizza" },
-];
+import { useSelector } from "react-redux";
+import { RootState } from "../../state/store";
+import { Restaurant } from "../../interfaces/restaurant-interface";
 
 const TopBar = () => {
+  const restaurants = useSelector<RootState, Restaurant[]>(
+    (state) => state.getRestaurants.restaurants
+  );
   const [isOpen, setIsOpen] = useState(false);
 
   const handleModal = () => {
@@ -33,7 +31,7 @@ const TopBar = () => {
           </div>
         </div>
         <div className="hidden md:block">
-          <Search data={mockData} />
+          <Search data={restaurants} />
         </div>
         <div className="flex gap-3">
           <div
@@ -53,7 +51,9 @@ const TopBar = () => {
           </div>
         </div>
       </div>
-      {isOpen && <Modal isOpen={isOpen} handleModal={handleModal} />}
+      {isOpen && (
+        <Modal data={restaurants} isOpen={isOpen} handleModal={handleModal} />
+      )}
     </nav>
   );
 };

@@ -7,11 +7,14 @@ import {
   HOME_ROUTE,
   PROFILE_ROUTE,
   REGISTRATION_ROUTE,
+  RESTAURANTS_ROUTE,
 } from "../consts";
 import ProfilePage from "../pages/Profile/ProfilePage";
 import AdminPage from "../pages/Admin/AdminPage";
+import RestaurantsPage from "../pages/Restaurants/RestaurantsPage";
+import { RouteItem } from "../interfaces/routeItem-interface";
 
-export const authRoutes = [
+export const authRoutes: RouteItem[] = [
   {
     path: HOME_ROUTE,
     Component: MainPage,
@@ -20,16 +23,20 @@ export const authRoutes = [
     path: PROFILE_ROUTE,
     Component: ProfilePage,
   },
+  {
+    path: RESTAURANTS_ROUTE,
+    Component: RestaurantsPage,
+  },
 ];
 
-export const adminRoutes = [
+export const adminRoutes: RouteItem[] = [
   {
     path: ADMIN_ROUTE,
     Component: AdminPage,
   },
 ];
 
-export const publicRoutes = [
+export const publicRoutes: RouteItem[] = [
   {
     path: REGISTRATION_ROUTE,
     Component: Registration,

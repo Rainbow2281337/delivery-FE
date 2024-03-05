@@ -5,7 +5,7 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import DeliveryDiningOutlinedIcon from "@mui/icons-material/DeliveryDiningOutlined";
 import { useNavigate } from "react-router-dom";
-import { HOME_ROUTE, PROFILE_ROUTE } from "../../consts";
+import { HOME_ROUTE, PROFILE_ROUTE, RESTAURANTS_ROUTE } from "../../consts";
 
 interface NavbarComponentProps {
   clickedPageValue: string;
@@ -33,8 +33,9 @@ const NavbarComponent: React.FC<NavbarComponentProps> = ({
               icon={<Home fontSize="large" />}
             />
             <BottomNavigationAction
-              label="Food"
-              value="food"
+              label="Restaurants"
+              value="restaurants"
+              onClick={() => navigate(RESTAURANTS_ROUTE)}
               icon={<DeliveryDiningOutlinedIcon fontSize="large" />}
             />
             <BottomNavigationAction

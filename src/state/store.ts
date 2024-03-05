@@ -5,6 +5,7 @@ import getProfileInfoReducer from "./profile/profile-slice";
 import getUserTableReducer from "./admin/get-users-slice";
 import deleteUserReducer from "./admin/delete-user-slice";
 import addUserReducer from "./admin/add-user-slice";
+import getRestaurantReduce from "./restaurant/restaurant-slice";
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     userTable: getUserTableReducer,
     deleteUser: deleteUserReducer,
     add: addUserReducer,
+    getRestaurants: getRestaurantReduce,
   },
 });
 

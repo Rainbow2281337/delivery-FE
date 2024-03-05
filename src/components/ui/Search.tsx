@@ -1,6 +1,6 @@
 import React from "react";
-import { Restaurant } from "../../interfaces/mock-data-interface.";
 import { Autocomplete, Stack, TextField } from "@mui/material";
+import { Restaurant } from "../../interfaces/restaurant-interface";
 
 interface SearchProps {
   data: Restaurant[];
@@ -13,7 +13,7 @@ const Search: React.FC<SearchProps> = ({ data }) => {
         freeSolo
         id="free-solo-2-demo"
         disableClearable
-        options={data.map((restaurant) => restaurant.name)}
+        options={data.map((restaurant) => restaurant.title)}
         renderInput={(params) => (
           <TextField
             {...params}
