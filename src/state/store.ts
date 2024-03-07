@@ -7,6 +7,8 @@ import deleteUserReducer from "./admin/delete-user-slice";
 import addUserReducer from "./admin/add-user-slice";
 import getRestaurantReducer from "./restaurant/restaurant-slice";
 import findRestaurantByIdReducer from "./restaurant/getRestaurantById-slice";
+import deleteRestaurantReducer from "./admin/delete-restaurant-slice";
+import addRestaurantReducer from "./admin/add-restaurant-slice";
 
 export const store = configureStore({
   reducer: {
@@ -18,6 +20,8 @@ export const store = configureStore({
     add: addUserReducer,
     getRestaurants: getRestaurantReducer,
     findRestaurantById: findRestaurantByIdReducer,
+    deleteRestaurant: deleteRestaurantReducer,
+    addRestaurant: addRestaurantReducer,
   },
 });
 

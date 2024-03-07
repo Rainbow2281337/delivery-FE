@@ -1,9 +1,9 @@
 import axios, { InternalAxiosRequestConfig } from "axios";
-import { DeleteUser } from "./interfaces/get-user-interface";
+import { RestaurantDeletionState } from "../../interfaces/restaurant-interface";
 import { PROXY } from "../../consts";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-const initialState: DeleteUser = {
+const initialState: RestaurantDeletionState = {
   status: "idle",
   error: null,
 };
@@ -33,32 +33,32 @@ instance.interceptors.request.use(
   }
 );
 
-export const deleteUser = createAsyncThunk(
-  "user/{id}",
-  async (userId: string | null) => {
-    const response = await instance.delete(`user/${userId}`);
+export const deleteRestaurant = createAsyncThunk(
+  "restaurant/{id}",
+  async (restaurantId: string | null) => {
+    const response = await instance.delete(`restaurant/${restaurantId}`);
     return response.data;
   }
 );
 
-const deleteUserSlice = createSlice({
-  name: "Delete user",
+const deleteRestaurantSlice = createSlice({
+  name: "restaurantDel",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(deleteUser.pending, (state) => {
+      .addCase(deleteRestaurant.pending, (state) => {
         state.status = "loading";
         state.error = null;
       })
-      .addCase(deleteUser.fulfilled, (state) => {
+      .addCase(deleteRestaurant.fulfilled, (state) => {
         state.status = "succeeded";
       })
-      .addCase(deleteUser.rejected, (state, action) => {
+      .addCase(deleteRestaurant.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message || "Network error";
       });
   },
 });
 
-export default deleteUserSlice.reducer;
+export default deleteRestaurantSlice.reducer;

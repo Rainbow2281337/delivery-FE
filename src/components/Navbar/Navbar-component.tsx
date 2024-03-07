@@ -22,7 +22,7 @@ const NavbarComponent: React.FC<NavbarComponentProps> = ({
   };
 
   return (
-    <nav className="fixed bottom-0 w-full p-4">
+    <nav className="fixed bottom-0 w-full p-4 bg-white">
       <div className="flex items-center justify-center">
         <div className="min-w-full">
           <BottomNavigation value={value} onChange={handleChange}>

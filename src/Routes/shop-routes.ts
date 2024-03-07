@@ -2,6 +2,7 @@ import Login from "../pages/Login/Login";
 import MainPage from "../pages/Main/Main-page";
 import Registration from "../pages/Registration/Registration";
 import {
+  ADMIN_RESTAURANTS_ROUTE,
   ADMIN_ROUTE,
   DEFAULT_ROUTE,
   HOME_ROUTE,
@@ -15,6 +16,7 @@ import AdminPage from "../pages/Admin/AdminPage";
 import RestaurantsPage from "../pages/Restaurants/RestaurantsPage";
 import { RouteItem } from "../interfaces/routeItem-interface";
 import RestaurantPage from "../pages/Restaurants/RestaurantPage";
+import AdminRestaurantsPage from "../pages/Admin/AdminRestaurantsPage";
 
 export const authRoutes: RouteItem[] = [
   {
@@ -39,6 +41,10 @@ export const adminRoutes: RouteItem[] = [
   {
     path: ADMIN_ROUTE,
     Component: AdminPage,
+  },
+  {
+    path: ADMIN_RESTAURANTS_ROUTE,
+    Component: AdminRestaurantsPage,
   },
 ];
 

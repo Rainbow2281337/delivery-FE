@@ -1,6 +1,5 @@
 import {
   Alert,
-  Skeleton,
   Snackbar,
   Table,
   TableBody,
@@ -20,6 +19,7 @@ import { getUserTable } from "../../../../state/admin/get-users-slice";
 import { deleteUser } from "../../../../state/admin/delete-user-slice";
 import { useState } from "react";
 import AdminModalComponent from "../../Modal/AdminModalComponent";
+import SkeletonComponent from "../../../ui/SkeletonComponent";
 
 const UserTableComponent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -60,9 +60,7 @@ const UserTableComponent = () => {
     <div>
       {status === "loading" ? (
         <div>
-          <Skeleton />
-          <Skeleton animation="wave" />
-          <Skeleton animation={false} />
+          <SkeletonComponent />
         </div>
       ) : (
         <div>

@@ -105,7 +105,7 @@ const AdminModalComponent: React.FC<AdminModalComponentProps> = ({
                 component="h1"
                 variant="h4"
               >
-                Sign up
+                Add user
               </Typography>
               <Box
                 component="form"

@@ -18,3 +18,8 @@ export interface RestaurantState {
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
 }
+
+export interface RestaurantDeletionState {
+  status: "idle" | "loading" | "succeeded" | "failed";
+  error: string | null;
+}
