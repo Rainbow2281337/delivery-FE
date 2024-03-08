@@ -16,6 +16,7 @@ const RestaurantsPage = () => {
       console.error("Error fetching data: ", error);
     }
   }, [dispatch]);
+
   return (
     <>
       <TopBar />

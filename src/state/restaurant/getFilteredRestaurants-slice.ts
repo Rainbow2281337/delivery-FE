@@ -37,34 +37,31 @@ instance.interceptors.request.use(
   }
 );
 
-export const getRestaurants = createAsyncThunk(
+export const getFilteredRestaurants = createAsyncThunk(
   "restaurant",
   async (params?: { [key: string]: string }) => {
-    let response;
-    params
-      ? (response = await instance.get<Restaurant[]>("restaurant", {
-          params: params,
-        }))
-      : (response = await instance.get<Restaurant[]>("restaurant"));
+    const response = await instance.get<Restaurant[]>("restaurant", {
+      params: params,
+    });
 
     return response.data;
   }
 );
 
-const getRestaurantsSlice = createSlice({
-  name: "Restaurants",
+const getFilteredRestaurantsSlice = createSlice({
+  name: "filteredRestaurants",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getRestaurants.pending, (state) => {
+      .addCase(getFilteredRestaurants.pending, (state) => {
         (state.status = "loading"), (state.error = null);
       })
-      .addCase(getRestaurants.fulfilled, (state, action) => {
+      .addCase(getFilteredRestaurants.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.restaurants = action.payload;
       })
-      .addCase(getRestaurants.rejected, (state, action) => {
+      .addCase(getFilteredRestaurants.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message || "Network error";
         state.restaurants = [];
@@ -72,4 +69,4 @@ const getRestaurantsSlice = createSlice({
   },
 });
 
-export default getRestaurantsSlice.reducer;
+export default getFilteredRestaurantsSlice.reducer;

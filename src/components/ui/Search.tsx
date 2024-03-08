@@ -7,11 +7,14 @@ interface SearchProps {
 }
 
 const Search: React.FC<SearchProps> = ({ data }) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
   return (
     <Stack spacing={2} sx={{ width: 400 }}>
       <Autocomplete
         freeSolo
-        id="free-solo-2-demo"
+        id="search-bar"
+        fullWidth
         disableClearable
         options={data.map((restaurant) => restaurant.title)}
         renderInput={(params) => (

@@ -5,7 +5,8 @@ import getProfileInfoReducer from "./profile/profile-slice";
 import getUserTableReducer from "./admin/get-users-slice";
 import deleteUserReducer from "./admin/delete-user-slice";
 import addUserReducer from "./admin/add-user-slice";
-import getRestaurantReducer from "./restaurant/restaurant-slice";
+import getRestaurantsReducer from "./restaurant/restaurant-slice";
+import getFilteredRestaurantsReducer from "./restaurant/getFilteredRestaurants-slice";
 import findRestaurantByIdReducer from "./restaurant/getRestaurantById-slice";
 import deleteRestaurantReducer from "./admin/delete-restaurant-slice";
 import addRestaurantReducer from "./admin/add-restaurant-slice";
@@ -18,7 +19,8 @@ export const store = configureStore({
     userTable: getUserTableReducer,
     deleteUser: deleteUserReducer,
     add: addUserReducer,
-    getRestaurants: getRestaurantReducer,
+    getRestaurants: getRestaurantsReducer,
+    getFilteredRestaurants: getFilteredRestaurantsReducer,
     findRestaurantById: findRestaurantByIdReducer,
     deleteRestaurant: deleteRestaurantReducer,
     addRestaurant: addRestaurantReducer,

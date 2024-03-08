@@ -1,17 +1,9 @@
 import { useState } from "react";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import Modal from "../ui/Modal";
-import Search from "../ui/Search";
 import logo from "../../assets/logo/logo.jpg";
-import { useSelector } from "react-redux";
-import { RootState } from "../../state/store";
-import { Restaurant } from "../../interfaces/restaurant-interface";
 
 const TopBar = () => {
-  const restaurants = useSelector<RootState, Restaurant[]>(
-    (state) => state.getRestaurants.restaurants
-  );
   const [isOpen, setIsOpen] = useState(false);
 
   const handleModal = () => {
@@ -29,9 +21,6 @@ const TopBar = () => {
             <span className="text-xl font-bold">The Foodie's</span>
             <span className="text-lg font-semibold">Compass</span>
           </div>
-        </div>
-        <div className="hidden md:block">
-          <Search data={restaurants} />
         </div>
         <div className="flex gap-3">
           <div
@@ -51,9 +40,9 @@ const TopBar = () => {
           </div>
         </div>
       </div>
-      {isOpen && (
+      {/* {isOpen && (
         <Modal data={restaurants} isOpen={isOpen} handleModal={handleModal} />
-      )}
+      )} */}
     </nav>
   );
 };
