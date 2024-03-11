@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../state/store";
 import { findRestaurantById } from "../../state/restaurant/getRestaurantById-slice";
+import ReviewList from "../../components/Review/ReviewList";
 
 const RestaurantPage = () => {
   const { id } = useParams();
@@ -16,11 +17,12 @@ const RestaurantPage = () => {
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
-  }, [dispatch]);
+  }, [id, dispatch]);
 
   return (
     <>
       <RestaurantHeroComponent />
+      <ReviewList />
       <NavbarComponent clickedPageValue="restaurants" />
     </>
   );

@@ -16,6 +16,8 @@ const initialState: RestaurantByIdState = {
   openHours: null,
   closeHours: null,
   phoneNumber: null,
+  averageRating: null,
+  reviews: [],
   image: undefined,
   imageMimeType: undefined,
   status: "idle",
@@ -78,6 +80,8 @@ const findRestaurantByIdSlice = createSlice({
         state.openHours = action.payload.openHours;
         state.closeHours = action.payload.closeHours;
         state.phoneNumber = action.payload.phoneNumber;
+        state.averageRating = action.payload.averageRating;
+        state.reviews = action.payload.reviews;
       })
       .addCase(findRestaurantById.rejected, (state, action) => {
         state.status = "failed";

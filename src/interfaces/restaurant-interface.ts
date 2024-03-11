@@ -1,3 +1,5 @@
+import { Review } from "./review-interface";
+
 export interface Restaurant {
   id: string | null;
   title: string | null;
@@ -6,6 +8,8 @@ export interface Restaurant {
   openHours: string | null;
   closeHours: string | null;
   phoneNumber: string | null;
+  averageRating: number | null;
+  reviews: Review[] | [];
   image?: {
     type: string;
     data: number[];

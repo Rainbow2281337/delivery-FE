@@ -42,7 +42,7 @@ export const deleteRestaurant = createAsyncThunk(
 );
 
 const deleteRestaurantSlice = createSlice({
-  name: "restaurantDel",
+  name: "restaurantDeleteReducer",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
