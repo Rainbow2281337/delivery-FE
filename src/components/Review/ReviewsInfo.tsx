@@ -6,6 +6,9 @@ interface ReviewsInfoProps {
 }
 
 const ReviewsInfo: React.FC<ReviewsInfoProps> = ({ restaurantData }) => {
+  const roundedRating =
+    restaurantData.averageRating && Math.round(restaurantData.averageRating);
+
   return (
     <div className="mt-16 mb-8">
       <Typography variant="h3">Reviews</Typography>
@@ -20,7 +23,7 @@ const ReviewsInfo: React.FC<ReviewsInfoProps> = ({ restaurantData }) => {
           <Typography variant="h5">Average Rating</Typography>
           <div className="flex items-center gap-3">
             <span className="font-bold text-2xl md:text-4xl">
-              {restaurantData.averageRating}
+              {roundedRating}
             </span>
             <Rating value={restaurantData.averageRating} readOnly />
           </div>

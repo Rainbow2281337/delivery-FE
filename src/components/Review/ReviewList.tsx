@@ -14,7 +14,7 @@ const ReviewList = () => {
     (state) => state.findRestaurantById
   );
   return (
-    <div className="w-[70%] mx-auto">
+    <div className="w-[80%] mx-auto mb-16">
       <div>
         <ReviewsInfo restaurantData={restaurant} />
       </div>

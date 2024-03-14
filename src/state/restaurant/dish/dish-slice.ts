@@ -1,13 +1,10 @@
 import axios, { InternalAxiosRequestConfig } from "axios";
-import {
-  Restaurant,
-  RestaurantState,
-} from "../../interfaces/restaurant-interface";
-import { PROXY } from "../../consts";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { Dish, DishState } from "../../../interfaces/dish-interface";
+import { PROXY } from "../../../consts";
 
-const initialState: RestaurantState = {
-  restaurants: [],
+const initialState: DishState = {
+  dishes: [],
   status: "idle",
   error: null,
 };
@@ -37,36 +34,35 @@ instance.interceptors.request.use(
   }
 );
 
-export const getFilteredRestaurants = createAsyncThunk(
-  "restaurant",
-  async (params?: { [key: string]: string }) => {
-    const response = await instance.get<Restaurant[]>("restaurant", {
-      params: params,
-    });
+export const getDishes = createAsyncThunk(
+  "dish",
+  async (restaurantId: string | undefined) => {
+    const response = await instance.get<Dish[]>(
+      `restaurant/${restaurantId}/dish`
+    );
 
     return response.data;
   }
 );
 
-const getFilteredRestaurantsSlice = createSlice({
-  name: "filteredRestaurants",
+const getDishesSlice = createSlice({
+  name: "Dishes",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getFilteredRestaurants.pending, (state) => {
+      .addCase(getDishes.pending, (state) => {
         (state.status = "loading"), (state.error = null);
       })
-      .addCase(getFilteredRestaurants.fulfilled, (state, action) => {
+      .addCase(getDishes.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.restaurants = action.payload;
+        state.dishes = action.payload;
       })
-      .addCase(getFilteredRestaurants.rejected, (state, action) => {
+      .addCase(getDishes.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message || "Network error";
-        state.restaurants = [];
       });
   },
 });
 
-export default getFilteredRestaurantsSlice.reducer;
+export default getDishesSlice.reducer;

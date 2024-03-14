@@ -3,14 +3,14 @@ import authReducer from "./auth/auth-slice";
 import registerReducer from "./register/register-slice";
 import getProfileInfoReducer from "./profile/profile-slice";
 import getUserTableReducer from "./admin/get-users-slice";
-import deleteUserReducer from "./admin/delete-user-slice";
-import addUserReducer from "./admin/add-user-slice";
+import deleteUserReducer from "./admin/delete-user-slice"; // remove
+import addUserReducer from "./admin/add-user-slice"; // remove
 import getRestaurantsReducer from "./restaurant/restaurant-slice";
-import getFilteredRestaurantsReducer from "./restaurant/getFilteredRestaurants-slice";
 import findRestaurantByIdReducer from "./restaurant/getRestaurantById-slice";
-import deleteRestaurantReducer from "./admin/delete-restaurant-slice";
-import addRestaurantReducer from "./admin/add-restaurant-slice";
-import addReviewReducer from "./review/add-review.slice";
+import deleteRestaurantReducer from "./admin/delete-restaurant-slice"; // remove
+import addRestaurantReducer from "./admin/add-restaurant-slice"; // remove
+import addReviewReducer from "./review/add-review.slice"; // remove
+import getDishesReducer from "./restaurant/dish/dish-slice";
 
 export const store = configureStore({
   reducer: {
@@ -21,11 +21,11 @@ export const store = configureStore({
     deleteUser: deleteUserReducer,
     add: addUserReducer,
     getRestaurants: getRestaurantsReducer,
-    getFilteredRestaurants: getFilteredRestaurantsReducer,
     findRestaurantById: findRestaurantByIdReducer,
     deleteRestaurant: deleteRestaurantReducer,
     addRestaurant: addRestaurantReducer,
     addReview: addReviewReducer,
+    getDishes: getDishesReducer,
   },
 });
 

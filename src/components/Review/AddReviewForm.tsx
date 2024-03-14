@@ -1,15 +1,18 @@
 import { Button, Rating, TextField } from "@mui/material";
 import { ChangeEvent, FormEvent, useState } from "react";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../state/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../state/store";
 import { useParams } from "react-router-dom";
 import { addReview } from "../../state/review/add-review.slice";
 
 const AddReviewForm = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const error: string | null = useSelector<RootState, string | null>(
+    (state) => state.addReview.error
+  );
   const { id } = useParams();
   const [rating, setRating] = useState<number | null>(0);
-  const [comment, setComment] = useState("");
+  const [comment, setComment] = useState<string>("");
 
   const handleCommentChange = (event: ChangeEvent<HTMLInputElement>) => {
     setComment(event.target.value);
@@ -60,6 +63,11 @@ const AddReviewForm = () => {
             </Button>
           </div>
         </div>
+        {error && (
+          <div className="mt-2">
+            <span className="text-lg text-red-500 font-semibold">{error}</span>
+          </div>
+        )}
       </div>
     </form>
   );

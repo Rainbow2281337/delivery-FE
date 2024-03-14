@@ -52,7 +52,6 @@ instance.interceptors.request.use(
 export const findRestaurantById = createAsyncThunk(
   "restaurant/{id}",
   async (restaurantId: string | undefined) => {
-    // Accept userId as argument
     const response = await instance.get<Restaurant>(
       `restaurant/${restaurantId}`
     );

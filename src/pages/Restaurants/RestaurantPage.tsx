@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../state/store";
 import { findRestaurantById } from "../../state/restaurant/getRestaurantById-slice";
 import ReviewList from "../../components/Review/ReviewList";
+import DishList from "../../components/Dish/DishList";
 
 const RestaurantPage = () => {
   const { id } = useParams();
@@ -22,6 +23,7 @@ const RestaurantPage = () => {
   return (
     <>
       <RestaurantHeroComponent />
+      <DishList />
       <ReviewList />
       <NavbarComponent clickedPageValue="restaurants" />
     </>

@@ -86,7 +86,12 @@ const addReviewSlice = createSlice({
       })
       .addCase(addReview.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.error.message || "Network error";
+        if (action.error.code === "ERR_BAD_REQUEST") {
+          state.error =
+            "There was an error. Please check your data for the following errors: the rating should not be greater than 5, should not be less than 1, the rating should not be empty, comment should not be empty";
+        } else {
+          state.error = action.error.code || "An error occurred";
+        }
       });
   },
 });
