@@ -53,11 +53,8 @@ const DishDetailedInfoModal: React.FC<DishDetailedInfoModalProps> = ({
                 ))}
               </ul>
             </div>
-            <div className="flex flex-col gap-2">
+            <div className="flex items-center justify-center">
               <Button variant="contained">Add to cart</Button>
-              <Button onClick={handleModal} variant="contained" color="error">
-                Close detailed info
-              </Button>
             </div>
           </div>
         </Box>

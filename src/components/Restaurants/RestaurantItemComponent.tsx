@@ -62,7 +62,7 @@ const RestaurantItemComponent: React.FC<RestaurantItemComponentProps> = ({
           />
           <Chip
             color="info"
-            variant="outlined"
+            variant="filled"
             sx={{ fontWeight: 600 }}
             label={data.cuisineType}
           />

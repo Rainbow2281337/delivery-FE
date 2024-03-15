@@ -1,47 +1,46 @@
-import { Dish } from "../../interfaces/dish-interface";
+import { Restaurant } from "../../interfaces/restaurant-interface";
 
-interface DishFilterProps {
-  dishes: Dish[];
-  selectedCategory: string | null;
-  handleCategorySelect: (category: string) => void;
+interface RestaurantFilterProps {
+  restaurants: Restaurant[];
+  selectedType: string | null;
+  handleTypeSelect: (type: string | null) => void;
   clearFilter: () => void;
 }
 
-const DishFilter: React.FC<DishFilterProps> = ({
-  dishes,
-  selectedCategory,
-  handleCategorySelect,
+const RestaurantFilter: React.FC<RestaurantFilterProps> = ({
+  restaurants,
+  selectedType,
+  handleTypeSelect,
   clearFilter,
 }) => {
   // remove duplicates
-  const uniqueCategories = Array.from(
-    new Set(dishes.map((dish) => dish.category))
+  const uniqueCuisineTypes = Array.from(
+    new Set(restaurants.map((restaurant) => restaurant.cuisineType))
   );
-
   return (
     <div className="mb-6">
       <ul className="flex flex-wrap gap-4 items-center justify-center 2xl:items-start 2xl:justify-start">
         <li
           onClick={clearFilter}
           className={`${
-            selectedCategory === null
+            selectedType === null
               ? "py-1 px-4 cursor-pointer bg-[#272a27]/85 rounded-lg"
               : "py-1 px-4 cursor-pointer bg-[#272a27] rounded-lg hover:opacity-85 duration-200"
           }`}
         >
           <button className="text-lg font-bold text-white">All</button>
         </li>
-        {uniqueCategories.map((category) => (
+        {uniqueCuisineTypes.map((type) => (
           <div
-            key={category}
-            onClick={() => handleCategorySelect(category)}
+            key={type}
+            onClick={() => handleTypeSelect(type)}
             className={`${
-              selectedCategory === category
+              selectedType === type
                 ? "py-1 px-4 cursor-pointer bg-[#272a27]/85 rounded-lg"
                 : "py-1 px-4 cursor-pointer bg-[#272a27] rounded-lg hover:opacity-85 duration-200"
             }`}
           >
-            <li className="text-lg font-bold text-white">{category}</li>
+            <li className="text-lg font-bold text-white">{type}</li>
           </div>
         ))}
       </ul>
@@ -49,4 +48,4 @@ const DishFilter: React.FC<DishFilterProps> = ({
   );
 };
 
-export default DishFilter;
+export default RestaurantFilter;

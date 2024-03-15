@@ -44,7 +44,7 @@ const DishList = () => {
         handleCategorySelect={handleCategorySelect}
         clearFilter={clearFilter}
       />
-      <ul className="flex items-center justify-center md:items-start md:justify-start gap-4 flex-wrap">
+      <ul className="flex items-center justify-center 2xl:items-start 2xl:justify-start gap-4 flex-wrap">
         {filteredItems.map((dish) => (
           <li key={dish.id}>
             <DishItem dish={dish} />
