@@ -35,7 +35,7 @@ const TopBar = () => {
               <div title="Cart" className="absolute">
                 <ShoppingCartOutlinedIcon fontSize="large" />
               </div>
-              <div className="relative top-[-10px] right-[-25px] bg-yellow-500 rounded-full px-2">
+              <div className="relative top-[-10px] right-[-25px] bg-white/25 rounded-full px-2">
                 <span className="text-lg text-white font-medium">0</span>
               </div>
             </div>
