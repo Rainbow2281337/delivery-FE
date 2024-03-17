@@ -1,8 +1,8 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { adminRoutes, authRoutes, publicRoutes } from "../Routes/shop-routes";
-import { DEFAULT_ROUTE } from "../consts";
 import { IfUserAuth, ProtectedRoute } from "./ProtectedRoute";
 import { ProtectedAdminRoute } from "./ProtectedAdminRoute";
+import { RESTAURANTS_ROUTE } from "../consts";
 
 const AppRoutes = () => {
   return (
@@ -44,7 +44,7 @@ const AppRoutes = () => {
           />
         ))}
 
-        <Route path="*" element={<Navigate to={DEFAULT_ROUTE} />} />
+        <Route path="*" element={<Navigate to={RESTAURANTS_ROUTE} />} />
       </Routes>
     </>
   );

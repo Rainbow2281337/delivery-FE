@@ -4,7 +4,6 @@ import RestaurantsTableComponent from "../../components/Admin/Content/Restaurant
 import { AppDispatch } from "../../state/store";
 import { getRestaurants } from "../../state/restaurant/restaurant-slice";
 import { useEffect } from "react";
-import NavbarComponent from "../../components/Navbar/Navbar-component";
 
 const AdminRestaurantsPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -22,7 +21,6 @@ const AdminRestaurantsPage = () => {
       <div className="mx-3">
         <RestaurantsTableComponent />
       </div>
-      <NavbarComponent clickedPageValue="profile" />
     </>
   );
 };

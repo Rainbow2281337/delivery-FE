@@ -4,7 +4,9 @@ import RestaurantItemComponent from "./RestaurantItemComponent";
 import { Restaurant } from "../../interfaces/restaurant-interface";
 import SkeletonComponent from "../ui/SkeletonComponent";
 import { useState } from "react";
-import RestaurantFilter from "./RestaurantFilter";
+import Container from "../Container";
+import Categories from "../Navbar/Categories";
+import NoMatches from "../NoMatches";
 
 const RestaurantsListComponent = () => {
   const restaurants = useSelector<RootState, Restaurant[]>(
@@ -23,34 +25,44 @@ const RestaurantsListComponent = () => {
   const handleTypeSelect = (type: string | null) => {
     setSelectedType(type === selectedType ? null : type);
   };
-
-  const clearFilter = () => {
-    setSelectedType(null);
-  };
-
   return (
-    <div className="w-[80%] mx-auto mt-16 mb-24">
-      {status === "loading" ? (
-        <SkeletonComponent />
-      ) : (
-        <div>
-          <RestaurantFilter
-            restaurants={restaurants}
-            selectedType={selectedType}
-            handleTypeSelect={handleTypeSelect}
-            clearFilter={clearFilter}
-          />
-          <ul className="flex gap-4 items-center justify-center 2xl:items-start 2xl:justify-start flex-wrap">
-            {restaurants &&
+    <Container>
+      <div className="pb-20 pt-32">
+        <Categories
+          selectedType={selectedType}
+          handleTypeSelect={handleTypeSelect}
+        />
+        {filteredRestaurants.length === 0 ? (
+          <NoMatches />
+        ) : (
+          <div
+            className="
+              pt-8
+              grid
+              grid-cols-1
+              gap-3
+              sm:grid-cols-2
+              md:grid-cols-3
+              md:gap-4
+              lg:grid-cols-4
+              xl:grid-cols-5
+              2xl:grid-cols-6
+            "
+          >
+            {status === "loading" ? (
+              <SkeletonComponent />
+            ) : (
               filteredRestaurants.map((restaurant) => (
-                <li key={restaurant.id}>
-                  <RestaurantItemComponent data={restaurant} />
-                </li>
-              ))}
-          </ul>
-        </div>
-      )}
-    </div>
+                <RestaurantItemComponent
+                  key={restaurant.id}
+                  data={restaurant}
+                />
+              ))
+            )}
+          </div>
+        )}
+      </div>
+    </Container>
   );
 };
 

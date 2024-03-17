@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import NavbarComponent from "../../components/Navbar/Navbar-component";
 import RestaurantHeroComponent from "../../components/Restaurants/Restaurant/RestaurantHeroComponent";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -7,6 +6,7 @@ import { AppDispatch } from "../../state/store";
 import { findRestaurantById } from "../../state/restaurant/getRestaurantById-slice";
 import ReviewList from "../../components/Review/ReviewList";
 import DishList from "../../components/Dish/DishList";
+import TopBar from "../../components/Navbar/TopBar";
 
 const RestaurantPage = () => {
   const { id } = useParams();
@@ -22,10 +22,10 @@ const RestaurantPage = () => {
 
   return (
     <>
+      <TopBar />
       <RestaurantHeroComponent />
       <DishList />
       <ReviewList />
-      <NavbarComponent clickedPageValue="restaurants" />
     </>
   );
 };

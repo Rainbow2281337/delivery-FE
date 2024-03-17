@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux";
-import NavbarComponent from "../../components/Navbar/Navbar-component";
 import TopBar from "../../components/Navbar/TopBar";
 import { AppDispatch } from "../../state/store";
 import { useEffect } from "react";
@@ -21,7 +20,6 @@ const RestaurantsPage = () => {
     <>
       <TopBar />
       <RestaurantsListComponent />
-      <NavbarComponent clickedPageValue="restaurants" />
     </>
   );
 };

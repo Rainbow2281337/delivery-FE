@@ -1,11 +1,9 @@
 import Login from "../pages/Login/Login";
-import MainPage from "../pages/Main/Main-page";
 import Registration from "../pages/Registration/Registration";
 import {
   ADMIN_RESTAURANTS_ROUTE,
   ADMIN_ROUTE,
   DEFAULT_ROUTE,
-  HOME_ROUTE,
   PROFILE_ROUTE,
   REGISTRATION_ROUTE,
   RESTAURANTS_ROUTE,
@@ -19,10 +17,6 @@ import RestaurantPage from "../pages/Restaurants/RestaurantPage";
 import AdminRestaurantsPage from "../pages/Admin/AdminRestaurantsPage";
 
 export const authRoutes: RouteItem[] = [
-  {
-    path: HOME_ROUTE,
-    Component: MainPage,
-  },
   {
     path: PROFILE_ROUTE,
     Component: ProfilePage,

@@ -10,6 +10,9 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { RESTAURANT_ROUTE } from "../../consts";
+import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
+import PhoneInTalkOutlinedIcon from "@mui/icons-material/PhoneInTalkOutlined";
+import MenuBookOutlinedIcon from "@mui/icons-material/MenuBookOutlined";
 
 interface RestaurantItemComponentProps {
   data: Restaurant;
@@ -19,6 +22,7 @@ const RestaurantItemComponent: React.FC<RestaurantItemComponentProps> = ({
   data,
 }) => {
   const navigate = useNavigate();
+
   return (
     <Card
       sx={{
@@ -50,7 +54,7 @@ const RestaurantItemComponent: React.FC<RestaurantItemComponentProps> = ({
             sx={{ position: "absolute", top: 5, right: 3, fontWeight: 700 }}
             label={`Working hours: ${data.openHours} - ${data.closeHours}`}
           />
-          <Chip
+          {/* <Chip
             color="secondary"
             sx={{
               position: "absolute",
@@ -59,13 +63,21 @@ const RestaurantItemComponent: React.FC<RestaurantItemComponentProps> = ({
               fontWeight: 700,
             }}
             label={`Address: ${data.address}`}
-          />
-          <Chip
-            color="info"
-            variant="filled"
-            sx={{ fontWeight: 600 }}
-            label={data.cuisineType}
-          />
+          /> */}
+          <div className="flex flex-col gap-2">
+            <div className="flex flex-row items-center gap-2">
+              <MenuBookOutlinedIcon />
+              <span>{data.cuisineType}</span>
+            </div>
+            <div className="flex flex-row items-center gap-2">
+              <LocationOnOutlinedIcon />
+              <span>{data.address}</span>
+            </div>
+            <div className="flex flex-row items-center gap-2">
+              <PhoneInTalkOutlinedIcon />
+              <span>{data.phoneNumber}</span>
+            </div>
+          </div>
         </CardContent>
       </CardActionArea>
     </Card>
