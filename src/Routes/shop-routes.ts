@@ -4,6 +4,9 @@ import {
   ADMIN_RESTAURANTS_ROUTE,
   ADMIN_ROUTE,
   DEFAULT_ROUTE,
+  PROFILE_DEACTIVATE_ACCOUNT_ROUTE,
+  PROFILE_PERSONAL_INFO_ROUTE,
+  PROFILE_PREFERENCES_ROUTE,
   PROFILE_ROUTE,
   REGISTRATION_ROUTE,
   RESTAURANTS_ROUTE,
@@ -15,11 +18,26 @@ import RestaurantsPage from "../pages/Restaurants/RestaurantsPage";
 import { RouteItem } from "../interfaces/routeItem-interface";
 import RestaurantPage from "../pages/Restaurants/RestaurantPage";
 import AdminRestaurantsPage from "../pages/Admin/AdminRestaurantsPage";
+import PersonalInfoPage from "../pages/Profile/PersonalInfoPage";
+import DeactivateAccountPage from "../pages/Profile/DeactivateAccountPage";
+import PreferencesPage from "../pages/Profile/PreferencesPage";
 
 export const authRoutes: RouteItem[] = [
   {
     path: PROFILE_ROUTE,
     Component: ProfilePage,
+  },
+  {
+    path: PROFILE_PERSONAL_INFO_ROUTE,
+    Component: PersonalInfoPage,
+  },
+  {
+    path: PROFILE_PREFERENCES_ROUTE,
+    Component: PreferencesPage,
+  },
+  {
+    path: PROFILE_DEACTIVATE_ACCOUNT_ROUTE,
+    Component: DeactivateAccountPage,
   },
   {
     path: RESTAURANTS_ROUTE,

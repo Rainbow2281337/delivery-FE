@@ -1,35 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
-import ProfileFields from "./ProfileFields";
 import { AppDispatch, RootState } from "../../state/store";
-import {
-  getProfileInfo,
-  logoutAction,
-} from "../../state/profile/profile-slice";
+import { getProfileInfo } from "../../state/profile/profile-slice";
 import { useEffect } from "react";
-import { Box, Button, CircularProgress } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { ADMIN_ROUTE, DEFAULT_ROUTE } from "../../consts";
+import Container from "../Container";
+import ProfileCards from "./ProfileCards";
+import SkeletonComponent from "../ui/SkeletonComponent";
 
 const ProfileComponent = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const status = useSelector<RootState>((state) => state.profileInfo.status);
-  const role = useSelector<RootState>((state) => state.profileInfo.role);
-  const email: string | null = useSelector<RootState, string | null>(
-    (state) => state.profileInfo.email
-  );
-  const firstName: string | null = useSelector<RootState, string | null>(
-    (state) => state.profileInfo.firstName
-  );
-  const lastName: string | null = useSelector<RootState, string | null>(
-    (state) => state.profileInfo.lastName
-  );
-  const address: string | null = useSelector<RootState, string | null>(
-    (state) => state.profileInfo.address
-  );
-  const phoneNuber: string | null = useSelector<RootState, string | null>(
-    (state) => state.profileInfo.phoneNumber
-  );
 
   useEffect(() => {
     try {
@@ -39,58 +18,12 @@ const ProfileComponent = () => {
     }
   }, [dispatch]);
 
-  const handleLogoutClick = () => {
-    dispatch(logoutAction());
-    sessionStorage.removeItem("access_token");
-
-    navigate(DEFAULT_ROUTE);
-  };
   return (
-    <div className="w-full md:w-9/12 mx-auto mt-8 border-2 border-black rounded-xl">
-      <div className="p-6 shadow-sm rounded-sm">
-        <div className="flex items-center space-x-2 font-semibold text-gray-900 text-lg">
-          <span className="tracking-wide text-2xl">About</span>
-        </div>
-        <div className="mt-4 text-gray-700">
-          {status === "loading" ? (
-            <Box sx={{ display: "flex" }}>
-              <CircularProgress />
-            </Box>
-          ) : (
-            <div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                <ProfileFields label="First name" value={firstName || ""} />
-                <ProfileFields label="Last name" value={lastName || ""} />
-                <ProfileFields label="Number" value={phoneNuber || ""} />
-                <ProfileFields label="Address" value={address || ""} />
-                <ProfileFields
-                  label="Email"
-                  value={email || ""}
-                  isEmail={true}
-                />
-              </div>
-              <div className="flex items-center justify-end gap-2">
-                {role === "ADMIN" && (
-                  <Button
-                    variant="contained"
-                    onClick={() => navigate(ADMIN_ROUTE)}
-                  >
-                    Admin panel
-                  </Button>
-                )}
-                <Button
-                  variant="contained"
-                  color="error"
-                  onClick={handleLogoutClick}
-                >
-                  Logout
-                </Button>
-              </div>
-            </div>
-          )}
-        </div>
+    <Container>
+      <div className="pt-32">
+        {status === "loading" ? <SkeletonComponent /> : <ProfileCards />}
       </div>
-    </div>
+    </Container>
   );
 };
 

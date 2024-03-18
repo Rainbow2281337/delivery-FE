@@ -37,7 +37,7 @@ const RestaurantItemComponent: React.FC<RestaurantItemComponentProps> = ({
         <CardMedia
           component="img"
           height="140"
-          image="https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          image="https://images.pexels.com/photos/2983101/pexels-photo-2983101.jpeg?auto=compress&cs=tinysrgb&w=600"
           alt="food"
         />
         <CardContent sx={{ backgroundColor: "#f5f5f5" }}>
@@ -54,16 +54,6 @@ const RestaurantItemComponent: React.FC<RestaurantItemComponentProps> = ({
             sx={{ position: "absolute", top: 5, right: 3, fontWeight: 700 }}
             label={`Working hours: ${data.openHours} - ${data.closeHours}`}
           />
-          {/* <Chip
-            color="secondary"
-            sx={{
-              position: "absolute",
-              bottom: 110,
-              left: 3,
-              fontWeight: 700,
-            }}
-            label={`Address: ${data.address}`}
-          /> */}
           <div className="flex flex-col gap-2">
             <div className="flex flex-row items-center gap-2">
               <MenuBookOutlinedIcon />

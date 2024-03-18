@@ -8,12 +8,15 @@ import MenuItem from "./MenuItem";
 import { useNavigate } from "react-router-dom";
 import { DEFAULT_ROUTE, PROFILE_ROUTE } from "../../consts";
 import { logoutAction } from "../../state/profile/profile-slice";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../state/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../state/store";
 
 const UserMenu = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
+  const firstName = useSelector<RootState, string | null>(
+    (state) => state.profileInfo.firstName
+  );
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = useCallback(() => {
@@ -47,7 +50,7 @@ const UserMenu = () => {
             transition
           "
         >
-          Hello, User
+          Hello, {firstName === null ? "User" : `${firstName}`}
         </div>
         <div
           onClick={toggleOpen}

@@ -51,6 +51,15 @@ export const getProfileInfo = createAsyncThunk("auth/profile", async () => {
   return response.data;
 });
 
+export const deleteAccount = createAsyncThunk(
+  "user/{id}",
+  async (userId: string | null) => {
+    const response = await instance.delete(`user/${userId}`);
+
+    return response.data;
+  }
+);
+
 export const logout = (state: UserProfileState) => {
   Object.assign(state, initialState);
 };
@@ -82,13 +91,18 @@ const getProfileInfoSlice = createSlice({
       .addCase(getProfileInfo.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message || "Network error";
-        state.id = null;
-        state.email = null;
-        state.firstName = null;
-        state.lastName = null;
-        state.address = null;
-        state.phoneNumber = null;
-        state.role = null;
+      })
+      .addCase(deleteAccount.pending, (state) => {
+        state.status = "loading";
+        state.error = null;
+      })
+      .addCase(deleteAccount.fulfilled, (state) => {
+        Object.assign(state, initialState);
+        sessionStorage.removeItem("access_token");
+      })
+      .addCase(deleteAccount.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message || "Account deletion failed";
       });
   },
 });

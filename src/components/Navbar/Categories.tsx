@@ -9,7 +9,6 @@ import TakeoutDiningOutlinedIcon from "@mui/icons-material/TakeoutDiningOutlined
 import SoupKitchenOutlinedIcon from "@mui/icons-material/SoupKitchenOutlined";
 import RiceBowlOutlinedIcon from "@mui/icons-material/RiceBowlOutlined";
 import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
-import TuneOutlinedIcon from "@mui/icons-material/TuneOutlined";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const categories = [
@@ -106,26 +105,6 @@ const Categories: React.FC<CategoriesProps> = ({
           overflow-x-auto
         "
       >
-        <div
-          className="
-            p-4
-            md:py-1
-            md:px-2
-            border-[1px]
-            border-neutral-200
-            flex
-            flex-row
-            items-center
-            gap-3
-            rounded-xl
-            cursor-pointer
-            hover:shadow-md
-            transition
-          "
-        >
-          <TuneOutlinedIcon fontSize="large" />
-          <span>Filters</span>
-        </div>
         {categories.map((item) => (
           <div
             key={item.cuisine}
