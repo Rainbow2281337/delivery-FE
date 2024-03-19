@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import authReducer from "./auth/auth-slice";
 import registerReducer from "./register/register-slice";
 import getProfileInfoReducer from "./profile/profile-slice";
@@ -12,23 +12,27 @@ import addRestaurantReducer from "./admin/add-restaurant-slice"; // remove
 import addReviewReducer from "./review/add-review.slice"; // remove
 import getDishesReducer from "./restaurant/dish/dish-slice";
 import themeSwitchReducer from "./theme/theme-switcher-slice";
+import languageSelectReducer from "./language/select-language-slice";
+
+const rootReducer = combineReducers({
+  auth: authReducer,
+  register: registerReducer,
+  profileInfo: getProfileInfoReducer,
+  userTable: getUserTableReducer,
+  deleteUser: deleteUserReducer,
+  add: addUserReducer,
+  getRestaurants: getRestaurantsReducer,
+  findRestaurantById: findRestaurantByIdReducer,
+  deleteRestaurant: deleteRestaurantReducer,
+  addRestaurant: addRestaurantReducer,
+  addReview: addReviewReducer,
+  getDishes: getDishesReducer,
+  theme: themeSwitchReducer,
+  setLanguage: languageSelectReducer,
+});
 
 export const store = configureStore({
-  reducer: {
-    auth: authReducer,
-    register: registerReducer,
-    profileInfo: getProfileInfoReducer,
-    userTable: getUserTableReducer,
-    deleteUser: deleteUserReducer,
-    add: addUserReducer,
-    getRestaurants: getRestaurantsReducer,
-    findRestaurantById: findRestaurantByIdReducer,
-    deleteRestaurant: deleteRestaurantReducer,
-    addRestaurant: addRestaurantReducer,
-    addReview: addReviewReducer,
-    getDishes: getDishesReducer,
-    theme: themeSwitchReducer,
-  },
+  reducer: rootReducer,
 });
 
 export type RootState = ReturnType<typeof store.getState>;

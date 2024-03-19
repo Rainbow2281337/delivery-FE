@@ -2,6 +2,9 @@ import { Breadcrumbs } from "@mui/material";
 import Container from "../Container";
 import { PROFILE_ROUTE } from "../../consts";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../../state/store";
+import { translate } from "../../assets/i18n";
 
 interface ListOfLinksProps {
   pageTitle: string;
@@ -9,6 +12,9 @@ interface ListOfLinksProps {
 
 const ListOfLinks: React.FC<ListOfLinksProps> = ({ pageTitle }) => {
   const navigate = useNavigate();
+  const preferredLanguage = useSelector<RootState, string>(
+    (state) => state.setLanguage.currentLanguage
+  );
   return (
     <Container>
       <div role="presentation" className="pt-44">
@@ -17,7 +23,7 @@ const ListOfLinks: React.FC<ListOfLinksProps> = ({ pageTitle }) => {
             onClick={() => navigate(PROFILE_ROUTE)}
             className="hover:underline cursor-pointer dark:text-neutral-400"
           >
-            Account
+            {translate("account", preferredLanguage)}
           </div>
           <div className="dark:text-white">{pageTitle}</div>
         </Breadcrumbs>

@@ -1,8 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { RESTAURANTS_ROUTE } from "../../consts";
+import { translate } from "../../assets/i18n";
+import { useSelector } from "react-redux";
+import { RootState } from "../../state/store";
 
 const Search = () => {
   const navigate = useNavigate();
+  const preferredLanguage = useSelector<RootState, string>(
+    (state) => state.setLanguage.currentLanguage
+  );
   return (
     <div
       className="
@@ -36,7 +42,7 @@ const Search = () => {
 			px-6
 		"
         >
-          Shop
+          {translate("shop", preferredLanguage)}
         </div>
         <div
           onClick={() => navigate("*")}
@@ -51,7 +57,7 @@ const Search = () => {
 			text-center
 		"
         >
-          Cart
+          {translate("cart", preferredLanguage)}
         </div>
       </div>
     </div>

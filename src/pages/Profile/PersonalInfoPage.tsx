@@ -4,24 +4,29 @@ import ListOfFields from "../../components/Profile/ListOfFields";
 import ListOfLinks from "../../components/Profile/ListOfLinks";
 import { RootState } from "../../state/store";
 import { User } from "../../interfaces/user-interface";
+import { translate } from "../../assets/i18n";
 
 const PersonalInfoPage = () => {
   const userInfo = useSelector<RootState, User>((state) => state.profileInfo);
+  const preferredLanguage = useSelector<RootState, string>(
+    (state) => state.setLanguage.currentLanguage
+  );
+
   const personalInfoFields = [
     {
-      title: "Full name",
+      title: translate("fullName", preferredLanguage),
       value: `${userInfo.firstName} ${userInfo.lastName}`,
     },
     {
-      title: "Email address",
+      title: translate("emailAddress", preferredLanguage),
       value: `${userInfo.email}`,
     },
     {
-      title: "Phone number",
+      title: translate("phoneNumber", preferredLanguage),
       value: `+38${userInfo.phoneNumber}`,
     },
     {
-      title: "Address",
+      title: translate("address", preferredLanguage),
       value: `${userInfo.address}`,
     },
   ];
@@ -29,7 +34,7 @@ const PersonalInfoPage = () => {
   return (
     <>
       <TopBar />
-      <ListOfLinks pageTitle="Personal info" />
+      <ListOfLinks pageTitle={translate("personalInfo", preferredLanguage)} />
       {personalInfoFields.map((field) => (
         <ListOfFields
           key={field.title}

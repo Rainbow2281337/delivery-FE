@@ -1,11 +1,22 @@
+import { useSelector } from "react-redux";
+import { translate } from "../../assets/i18n";
 import Container from "../Container";
+import { RootState } from "../../state/store";
 
 interface ListOfFieldsProps {
   title: string;
   value: string | null;
+  isEditable?: boolean;
 }
 
-const ListOfFields: React.FC<ListOfFieldsProps> = ({ title, value }) => {
+const ListOfFields: React.FC<ListOfFieldsProps> = ({
+  title,
+  value,
+  isEditable,
+}) => {
+  const preferredLanguage = useSelector<RootState, string>(
+    (state) => state.setLanguage.currentLanguage
+  );
   return (
     <Container>
       <div className="mb-2 border-b">
@@ -37,9 +48,13 @@ const ListOfFields: React.FC<ListOfFieldsProps> = ({ title, value }) => {
             >
               {title}
             </div>
-            <div>
-              <button className="underline dark:text-white">Edit</button>
-            </div>
+            {isEditable && (
+              <div>
+                <button className="underline dark:text-white">
+                  {translate("edit", preferredLanguage)}
+                </button>
+              </div>
+            )}
           </div>
           <div className="text-neutral-500 md:text-lg dark:text-neutral-400">
             {value}

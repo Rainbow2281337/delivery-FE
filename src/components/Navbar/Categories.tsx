@@ -9,80 +9,9 @@ import TakeoutDiningOutlinedIcon from "@mui/icons-material/TakeoutDiningOutlined
 import SoupKitchenOutlinedIcon from "@mui/icons-material/SoupKitchenOutlined";
 import RiceBowlOutlinedIcon from "@mui/icons-material/RiceBowlOutlined";
 import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
-
-// eslint-disable-next-line react-refresh/only-export-components
-export const categories = [
-  {
-    cuisine: "Chinese",
-    icon: <RiceBowlOutlinedIcon fontSize="large" />,
-    description: "This property is close to the beach!",
-  },
-  {
-    cuisine: "Mexican",
-    icon: <EggAltOutlinedIcon fontSize="large" />,
-    description: "This property is has windmills!",
-  },
-  {
-    cuisine: "Korean",
-    icon: <RamenDiningOutlinedIcon fontSize="large" />,
-    description: "This property is modern!",
-  },
-  {
-    cuisine: "Vietnamese",
-    icon: <EggAltOutlinedIcon fontSize="large" />,
-    description: "This property is in the countryside!",
-  },
-  {
-    cuisine: "Italian",
-    icon: <LocalPizzaOutlinedIcon fontSize="large" />,
-    description: "This is property has a beautiful pool!",
-  },
-  {
-    cuisine: "Thai",
-    icon: <RamenDiningOutlinedIcon fontSize="large" />,
-    description: "This property is on an island!",
-  },
-  {
-    cuisine: "French",
-    icon: <BakeryDiningOutlinedIcon fontSize="large" />,
-    description: "This property is near a lake!",
-  },
-  {
-    cuisine: "American",
-    icon: <FastfoodOutlinedIcon fontSize="large" />,
-    description: "This property has skiing activies!",
-  },
-  {
-    cuisine: "Spanish",
-    icon: <KebabDiningOutlinedIcon fontSize="large" />,
-    description: "This property is an ancient castle!",
-  },
-  {
-    cuisine: "Indian",
-    icon: <RamenDiningOutlinedIcon fontSize="large" />,
-    description: "This property is in a spooky cave!",
-  },
-  {
-    cuisine: "Japanese",
-    icon: <TakeoutDiningOutlinedIcon fontSize="large" />,
-    description: "This property offers camping activities!",
-  },
-  {
-    cuisine: "Greek",
-    icon: <RiceBowlOutlinedIcon fontSize="large" />,
-    description: "This property is in arctic environment!",
-  },
-  {
-    cuisine: "Turkish",
-    icon: <KebabDiningOutlinedIcon fontSize="large" />,
-    description: "This property is in the desert!",
-  },
-  {
-    cuisine: "Ukrainian",
-    icon: <SoupKitchenOutlinedIcon fontSize="large" />,
-    description: "This property is in a barn!",
-  },
-];
+import { useSelector } from "react-redux";
+import { RootState } from "../../state/store";
+import { translate } from "../../assets/i18n";
 
 interface CategoriesProps {
   selectedType: string | null;
@@ -93,6 +22,82 @@ const Categories: React.FC<CategoriesProps> = ({
   selectedType,
   handleTypeSelect,
 }) => {
+  const preferredLanguage = useSelector<RootState, string>(
+    (state) => state.setLanguage.currentLanguage
+  );
+
+  const categories = [
+    {
+      cuisine: translate("chinese", preferredLanguage),
+      icon: <RiceBowlOutlinedIcon fontSize="large" />,
+      description: "This property is close to the beach!",
+    },
+    {
+      cuisine: translate("mexican", preferredLanguage),
+      icon: <EggAltOutlinedIcon fontSize="large" />,
+      description: "This property is has windmills!",
+    },
+    {
+      cuisine: translate("korean", preferredLanguage),
+      icon: <RamenDiningOutlinedIcon fontSize="large" />,
+      description: "This property is modern!",
+    },
+    {
+      cuisine: translate("vietnamese", preferredLanguage),
+      icon: <EggAltOutlinedIcon fontSize="large" />,
+      description: "This property is in the countryside!",
+    },
+    {
+      cuisine: translate("italian", preferredLanguage),
+      icon: <LocalPizzaOutlinedIcon fontSize="large" />,
+      description: "This is property has a beautiful pool!",
+    },
+    {
+      cuisine: translate("thai", preferredLanguage),
+      icon: <RamenDiningOutlinedIcon fontSize="large" />,
+      description: "This property is on an island!",
+    },
+    {
+      cuisine: translate("french", preferredLanguage),
+      icon: <BakeryDiningOutlinedIcon fontSize="large" />,
+      description: "This property is near a lake!",
+    },
+    {
+      cuisine: translate("american", preferredLanguage),
+      icon: <FastfoodOutlinedIcon fontSize="large" />,
+      description: "This property has skiing activies!",
+    },
+    {
+      cuisine: translate("spanish", preferredLanguage),
+      icon: <KebabDiningOutlinedIcon fontSize="large" />,
+      description: "This property is an ancient castle!",
+    },
+    {
+      cuisine: translate("indian", preferredLanguage),
+      icon: <RamenDiningOutlinedIcon fontSize="large" />,
+      description: "This property is in a spooky cave!",
+    },
+    {
+      cuisine: translate("japanese", preferredLanguage),
+      icon: <TakeoutDiningOutlinedIcon fontSize="large" />,
+      description: "This property offers camping activities!",
+    },
+    {
+      cuisine: translate("greek", preferredLanguage),
+      icon: <RiceBowlOutlinedIcon fontSize="large" />,
+      description: "This property is in arctic environment!",
+    },
+    {
+      cuisine: translate("turkish", preferredLanguage),
+      icon: <KebabDiningOutlinedIcon fontSize="large" />,
+      description: "This property is in the desert!",
+    },
+    {
+      cuisine: translate("ukrainian", preferredLanguage),
+      icon: <SoupKitchenOutlinedIcon fontSize="large" />,
+      description: "This property is in a barn!",
+    },
+  ];
   return (
     <Container>
       <div

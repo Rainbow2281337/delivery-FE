@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { DEFAULT_ROUTE, PROFILE_ROUTE } from "../../consts";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { deleteAccount } from "../../state/profile/profile-slice";
+import { translate } from "../../assets/i18n";
 
 const DeactivateAccount = () => {
   const navigate = useNavigate();
@@ -11,6 +12,9 @@ const DeactivateAccount = () => {
   const email = useSelector<RootState>((state) => state.profileInfo.email);
   const id = useSelector<RootState, string | null>(
     (state) => state.profileInfo.id
+  );
+  const preferredLanguage = useSelector<RootState, string>(
+    (state) => state.setLanguage.currentLanguage
   );
 
   const handleAccountDelete = (userId: string | null) => {
@@ -44,7 +48,7 @@ const DeactivateAccount = () => {
         dark:text-white
 			"
         >
-          Deactivate account?
+          {translate("deactivateAccount", preferredLanguage)}?
         </div>
         <div
           className="
@@ -79,7 +83,7 @@ const DeactivateAccount = () => {
 			"
           >
             <InfoOutlinedIcon fontSize="large" />
-            This account will disappear.
+            {translate("this_account_will_disappear", preferredLanguage)}
           </li>
           <li
             className="
@@ -94,7 +98,10 @@ const DeactivateAccount = () => {
 			"
           >
             <InfoOutlinedIcon fontSize="large" />
-            You won’t be able to access the account.
+            {translate(
+              "you_won’t_be_able_to_access_the_account",
+              preferredLanguage
+            )}
           </li>
           <li
             className="
@@ -109,7 +116,7 @@ const DeactivateAccount = () => {
 			"
           >
             <InfoOutlinedIcon fontSize="large" />
-            This action cannot be canceled.
+            {translate("this_action_cannot_be_canceled", preferredLanguage)}
           </li>
         </ul>
         <div className="mt-4 flex items-center justify-between">
@@ -127,7 +134,7 @@ const DeactivateAccount = () => {
 				rounded-lg
 			"
           >
-            Cancel
+            {translate("cancel", preferredLanguage)}
           </button>
           <button
             onClick={() => handleAccountDelete(id)}
@@ -143,7 +150,7 @@ const DeactivateAccount = () => {
 				rounded-lg
 			"
           >
-            Delete account
+            {translate("deleteAccount", preferredLanguage)}
           </button>
         </div>
       </div>

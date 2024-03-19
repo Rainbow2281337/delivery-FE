@@ -12,6 +12,8 @@ import { logoutAction } from "../../state/profile/profile-slice";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../state/store";
 import ThemeSwitcher from "../ThemeSwitcher";
+import LanguageSelectModal from "./LanguageSelectModal";
+import { translate } from "../../assets/i18n";
 
 const UserMenu = () => {
   const navigate = useNavigate();
@@ -19,7 +21,15 @@ const UserMenu = () => {
   const firstName = useSelector<RootState, string | null>(
     (state) => state.profileInfo.firstName
   );
+  const preferredLanguage = useSelector<RootState, string>(
+    (state) => state.setLanguage.currentLanguage
+  );
   const [isOpen, setIsOpen] = useState(false);
+  const [isLanguageSelectOpen, setIsLanguageSelectOpen] = useState(false);
+
+  const toggleLanguageSelectOpen = useCallback(() => {
+    setIsLanguageSelectOpen((value) => !value);
+  }, []);
 
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value);
@@ -54,12 +64,16 @@ const UserMenu = () => {
             dark:hover:bg-neutral-700
           "
         >
-          Hello, {firstName === null ? "User" : `${firstName}`}
+          {translate("hello", preferredLanguage)},{" "}
+          {firstName === null ? "User" : `${firstName}`}
         </div>
         <div>
           <ThemeSwitcher />
         </div>
-        <div className="dark:text-white">
+        <div
+          onClick={toggleLanguageSelectOpen}
+          className="cursor-pointer dark:text-white"
+        >
           <LanguageOutlinedIcon />
         </div>
         <div
@@ -110,21 +124,27 @@ const UserMenu = () => {
               <MenuItem
                 icon={<InfoOutlinedIcon fontSize="small" />}
                 onClick={() => navigate(PROFILE_ROUTE)}
-                label="Profile"
+                label={translate("profile", preferredLanguage)}
               />
               <MenuItem
                 icon={<ShoppingCartOutlinedIcon fontSize="small" />}
                 onClick={() => navigate("*")}
-                label="Cart"
+                label={translate("cart", preferredLanguage)}
               />
               <MenuItem
                 icon={<ExitToAppOutlinedIcon fontSize="small" />}
                 onClick={handleLogout}
-                label="Logout"
+                label={translate("logout", preferredLanguage)}
               />
             </>
           </div>
         </div>
+      )}
+      {isLanguageSelectOpen && (
+        <LanguageSelectModal
+          handleModal={toggleLanguageSelectOpen}
+          isOpen={isLanguageSelectOpen}
+        />
       )}
     </div>
   );

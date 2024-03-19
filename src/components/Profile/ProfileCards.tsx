@@ -13,33 +13,7 @@ import {
   PROFILE_PERSONAL_INFO_ROUTE,
   PROFILE_PREFERENCES_ROUTE,
 } from "../../consts";
-
-const profileActions = [
-  {
-    icon: <FeedOutlinedIcon fontSize="large" />,
-    title: "Personal info",
-    description: "Provide personal details",
-    navigation: PROFILE_PERSONAL_INFO_ROUTE,
-  },
-  {
-    icon: <DisplaySettingsOutlinedIcon fontSize="large" />,
-    title: "Preferences",
-    description: "Set your default language and theme",
-    navigation: PROFILE_PREFERENCES_ROUTE,
-  },
-  {
-    icon: <GppBadOutlinedIcon fontSize="large" />,
-    title: "Deactivate account",
-    description: "Need to deactivate your account? Take care of that now",
-    navigation: PROFILE_DEACTIVATE_ACCOUNT_ROUTE,
-  },
-  {
-    icon: <AdminPanelSettingsOutlinedIcon fontSize="large" />,
-    title: "Admin panel",
-    description: "Admin panel for authorized users only",
-    navigation: ADMIN_ROUTE,
-  },
-];
+import { translate } from "../../assets/i18n";
 
 const ProfileCards = () => {
   const firstName = useSelector<RootState>(
@@ -49,6 +23,45 @@ const ProfileCards = () => {
     (state) => state.profileInfo.lastName
   );
   const role = useSelector<RootState>((state) => state.profileInfo.role);
+  const preferredLanguage = useSelector<RootState, string>(
+    (state) => state.setLanguage.currentLanguage
+  );
+
+  const profileActions = [
+    {
+      icon: <FeedOutlinedIcon fontSize="large" />,
+      title: translate("personalInfo", preferredLanguage),
+      description: translate("see_personal_details", preferredLanguage),
+      navigation: PROFILE_PERSONAL_INFO_ROUTE,
+    },
+    {
+      icon: <DisplaySettingsOutlinedIcon fontSize="large" />,
+      title: translate("preferences", preferredLanguage),
+      description: translate(
+        "set_your_default_language_and_theme",
+        preferredLanguage
+      ),
+      navigation: PROFILE_PREFERENCES_ROUTE,
+    },
+    {
+      icon: <GppBadOutlinedIcon fontSize="large" />,
+      title: translate("deactivateAccount", preferredLanguage),
+      description: translate(
+        "need_to_deactivate_your_account_?_take_care_of_that_now",
+        preferredLanguage
+      ),
+      navigation: PROFILE_DEACTIVATE_ACCOUNT_ROUTE,
+    },
+    {
+      icon: <AdminPanelSettingsOutlinedIcon fontSize="large" />,
+      title: translate("adminPanel", preferredLanguage),
+      description: translate(
+        "admin_panel_for_authorized_users_only",
+        preferredLanguage
+      ),
+      navigation: ADMIN_ROUTE,
+    },
+  ];
   return (
     <Container>
       <div className="pt-28">

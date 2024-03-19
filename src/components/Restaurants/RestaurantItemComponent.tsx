@@ -13,6 +13,9 @@ import { RESTAURANT_ROUTE } from "../../consts";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import PhoneInTalkOutlinedIcon from "@mui/icons-material/PhoneInTalkOutlined";
 import MenuBookOutlinedIcon from "@mui/icons-material/MenuBookOutlined";
+import { useSelector } from "react-redux";
+import { RootState } from "../../state/store";
+import { translate } from "../../assets/i18n";
 
 interface RestaurantItemComponentProps {
   data: Restaurant;
@@ -22,7 +25,9 @@ const RestaurantItemComponent: React.FC<RestaurantItemComponentProps> = ({
   data,
 }) => {
   const navigate = useNavigate();
-
+  const preferredLanguage = useSelector<RootState, string>(
+    (state) => state.setLanguage.currentLanguage
+  );
   return (
     <Card
       sx={{
@@ -55,7 +60,9 @@ const RestaurantItemComponent: React.FC<RestaurantItemComponentProps> = ({
             <Chip
               color="info"
               sx={{ position: "absolute", top: 5, right: 3, fontWeight: 700 }}
-              label={`Working hours: ${data.openHours} - ${data.closeHours}`}
+              label={`${translate("workingHours", preferredLanguage)}: ${
+                data.openHours
+              } - ${data.closeHours}`}
             />
             <div className="flex flex-col gap-2">
               <div className="flex flex-row items-center gap-2 dark:text-white">
