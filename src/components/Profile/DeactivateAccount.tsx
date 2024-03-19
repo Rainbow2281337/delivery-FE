@@ -41,6 +41,7 @@ const DeactivateAccount = () => {
 				xl:text-4xl
 				text-center
 				font-bold
+        dark:text-white
 			"
         >
           Deactivate account?
@@ -53,6 +54,7 @@ const DeactivateAccount = () => {
 				text-center
 				text-neutral-500
 				font-semibold
+        dark:text-neutral-400
 			"
         >{`${email}`}</div>
         <ul
@@ -73,6 +75,7 @@ const DeactivateAccount = () => {
 				border-b
 				pb-2
 				w-full
+        dark:text-neutral-400
 			"
           >
             <InfoOutlinedIcon fontSize="large" />
@@ -87,6 +90,7 @@ const DeactivateAccount = () => {
 				border-b
 				pb-2
 				w-full
+        dark:text-neutral-400
 			"
           >
             <InfoOutlinedIcon fontSize="large" />
@@ -101,6 +105,7 @@ const DeactivateAccount = () => {
 				border-b
 				pb-2
 				w-full
+        dark:text-neutral-400
 			"
           >
             <InfoOutlinedIcon fontSize="large" />

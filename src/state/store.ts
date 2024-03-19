@@ -11,6 +11,7 @@ import deleteRestaurantReducer from "./admin/delete-restaurant-slice"; // remove
 import addRestaurantReducer from "./admin/add-restaurant-slice"; // remove
 import addReviewReducer from "./review/add-review.slice"; // remove
 import getDishesReducer from "./restaurant/dish/dish-slice";
+import themeSwitchReducer from "./theme/theme-switcher-slice";
 
 export const store = configureStore({
   reducer: {
@@ -26,6 +27,7 @@ export const store = configureStore({
     addRestaurant: addRestaurantReducer,
     addReview: addReviewReducer,
     getDishes: getDishesReducer,
+    theme: themeSwitchReducer,
   },
 });
 

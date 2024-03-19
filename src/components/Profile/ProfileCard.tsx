@@ -30,11 +30,15 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
 			shadow-md
 			cursor-pointer
 			transition
+      dark:bg-neutral-800
+      dark:hover:bg-neutral-700
 		"
     >
-      <div className="mb-8">{icon}</div>
-      <div className="mb-1 text-lg font-semibold">{title}</div>
-      <div className="text-neutral-500">{description}</div>
+      <div className="mb-8 dark:text-white">{icon}</div>
+      <div className="mb-1 text-lg font-semibold dark:text-white">{title}</div>
+      <div className="text-neutral-500 dark:text-neutral-400">
+        {description}
+      </div>
     </div>
   );
 };

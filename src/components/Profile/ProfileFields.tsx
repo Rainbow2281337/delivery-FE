@@ -10,7 +10,9 @@ const ProfileFields: React.FC<ProfileFieldsProps> = ({
 }) => {
   return (
     <div className="grid grid-cols-2">
-      <div className="px-4 py-2 font-semibold text-lg">{label}</div>
+      <div className="px-4 py-2 font-semibold text-lg dark:text-white">
+        {label}
+      </div>
       <div className="px-4 py-2">
         {isEmail ? (
           <a
@@ -20,7 +22,9 @@ const ProfileFields: React.FC<ProfileFieldsProps> = ({
             {value}
           </a>
         ) : (
-          <span className="text-md md:text-lg font-medium">{value}</span>
+          <span className="text-md md:text-lg font-medium dark:text-white">
+            {value}
+          </span>
         )}
       </div>
     </div>

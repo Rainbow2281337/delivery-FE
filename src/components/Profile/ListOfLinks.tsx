@@ -1,4 +1,4 @@
-import { Breadcrumbs, Typography } from "@mui/material";
+import { Breadcrumbs } from "@mui/material";
 import Container from "../Container";
 import { PROFILE_ROUTE } from "../../consts";
 import { useNavigate } from "react-router-dom";
@@ -15,13 +15,13 @@ const ListOfLinks: React.FC<ListOfLinksProps> = ({ pageTitle }) => {
         <Breadcrumbs aria-label="breadcrumb">
           <div
             onClick={() => navigate(PROFILE_ROUTE)}
-            className="hover:underline cursor-pointer"
+            className="hover:underline cursor-pointer dark:text-neutral-400"
           >
             Account
           </div>
-          <Typography color="text.primary">{pageTitle}</Typography>
+          <div className="dark:text-white">{pageTitle}</div>
         </Breadcrumbs>
-        <div className="mt-2 mb-16 text-xl md:text-3xl font-bold">
+        <div className="mt-2 mb-16 text-xl md:text-3xl font-bold dark:text-white">
           {pageTitle}
         </div>
       </div>

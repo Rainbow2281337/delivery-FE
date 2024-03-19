@@ -40,35 +40,39 @@ const RestaurantItemComponent: React.FC<RestaurantItemComponentProps> = ({
           image="https://images.pexels.com/photos/2983101/pexels-photo-2983101.jpeg?auto=compress&cs=tinysrgb&w=600"
           alt="food"
         />
-        <CardContent sx={{ backgroundColor: "#f5f5f5" }}>
-          <Typography
-            gutterBottom
-            variant="h5"
-            component="div"
-            sx={{ textTransform: "uppercase" }}
-          >
-            {data.title}
-          </Typography>
-          <Chip
-            color="info"
-            sx={{ position: "absolute", top: 5, right: 3, fontWeight: 700 }}
-            label={`Working hours: ${data.openHours} - ${data.closeHours}`}
-          />
-          <div className="flex flex-col gap-2">
-            <div className="flex flex-row items-center gap-2">
-              <MenuBookOutlinedIcon />
-              <span>{data.cuisineType}</span>
+        <div className="bg-white dark:bg-neutral-800">
+          <CardContent>
+            <div className="dark:text-white">
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="div"
+                sx={{ textTransform: "uppercase" }}
+              >
+                {data.title}
+              </Typography>
             </div>
-            <div className="flex flex-row items-center gap-2">
-              <LocationOnOutlinedIcon />
-              <span>{data.address}</span>
+            <Chip
+              color="info"
+              sx={{ position: "absolute", top: 5, right: 3, fontWeight: 700 }}
+              label={`Working hours: ${data.openHours} - ${data.closeHours}`}
+            />
+            <div className="flex flex-col gap-2">
+              <div className="flex flex-row items-center gap-2 dark:text-white">
+                <MenuBookOutlinedIcon />
+                <span>{data.cuisineType}</span>
+              </div>
+              <div className="flex flex-row items-center gap-2 dark:text-white">
+                <LocationOnOutlinedIcon />
+                <span>{data.address}</span>
+              </div>
+              <div className="flex flex-row items-center gap-2 dark:text-white">
+                <PhoneInTalkOutlinedIcon />
+                <span>{data.phoneNumber}</span>
+              </div>
             </div>
-            <div className="flex flex-row items-center gap-2">
-              <PhoneInTalkOutlinedIcon />
-              <span>{data.phoneNumber}</span>
-            </div>
-          </div>
-        </CardContent>
+          </CardContent>
+        </div>
       </CardActionArea>
     </Card>
   );

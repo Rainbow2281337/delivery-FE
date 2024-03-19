@@ -18,8 +18,10 @@ const RestaurantsPage = () => {
 
   return (
     <>
-      <TopBar />
-      <RestaurantsListComponent />
+      <div>
+        <TopBar />
+        <RestaurantsListComponent />
+      </div>
     </>
   );
 };

@@ -5,11 +5,12 @@ import UserMenu from "./UserMenu";
 
 const TopBar = () => {
   return (
-    <div className="fixed w-full bg-white z-10 shadow-sm">
+    <div className="fixed w-full bg-white z-10 shadow-sm dark:bg-neutral-900">
       <div
         className="
           py-4
           border-b-[1px]
+          dark:border-b-neutral-700
         "
       >
         <Container>

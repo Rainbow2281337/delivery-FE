@@ -32,15 +32,18 @@ const ListOfFields: React.FC<ListOfFieldsProps> = ({ title, value }) => {
                 md:text-xl
                 font-semibold
                 mb-1
+                dark:text-white
               "
             >
               {title}
             </div>
             <div>
-              <button className="underline">Edit</button>
+              <button className="underline dark:text-white">Edit</button>
             </div>
           </div>
-          <div className="text-neutral-500 md:text-lg">{value}</div>
+          <div className="text-neutral-500 md:text-lg dark:text-neutral-400">
+            {value}
+          </div>
         </div>
       </div>
     </Container>

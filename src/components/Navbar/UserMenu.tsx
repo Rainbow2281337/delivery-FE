@@ -2,6 +2,7 @@ import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
+import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 import Avatar from "../Avatar";
 import { useCallback, useState } from "react";
 import MenuItem from "./MenuItem";
@@ -10,6 +11,7 @@ import { DEFAULT_ROUTE, PROFILE_ROUTE } from "../../consts";
 import { logoutAction } from "../../state/profile/profile-slice";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../state/store";
+import ThemeSwitcher from "../ThemeSwitcher";
 
 const UserMenu = () => {
   const navigate = useNavigate();
@@ -46,11 +48,19 @@ const UserMenu = () => {
             py-3
             px-4
             rounded-full
-          hover:bg-neutral-100
+            hover:bg-neutral-100
             transition
+            dark:text-white
+            dark:hover:bg-neutral-700
           "
         >
           Hello, {firstName === null ? "User" : `${firstName}`}
+        </div>
+        <div>
+          <ThemeSwitcher />
+        </div>
+        <div className="dark:text-white">
+          <LanguageOutlinedIcon />
         </div>
         <div
           onClick={toggleOpen}
@@ -68,6 +78,7 @@ const UserMenu = () => {
             cursor-pointer
             hover:shadow-md
             transition
+            dark:text-white
           "
         >
           <ListOutlinedIcon />
@@ -90,6 +101,8 @@ const UserMenu = () => {
             right-0
             top-12
             text-sm
+            dark:bg-black
+            dark:text-white
           "
         >
           <div className="flex flex-col cursor-pointer">

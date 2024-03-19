@@ -15,6 +15,9 @@ const Search = () => {
 			hover:shadow-md
 			transition
 			cursor-pointer
+			dark:bg-neutral-600
+			dark:text-white
+			dark:border-neutral-700
 		"
     >
       <div
@@ -43,7 +46,7 @@ const Search = () => {
 			text-sm
 			font-semibold
 			px-6
-			border-x-[1px]
+			border-l-[1px]
 			flex-1
 			text-center
 		"
