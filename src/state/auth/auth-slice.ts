@@ -66,7 +66,11 @@ const authSlice = createSlice({
         state.isAuthenticated = true;
         state.access_token = action.payload.access_token;
 
-        sessionStorage.setItem("access_token", action.payload.access_token);
+        if (state.access_token) {
+          sessionStorage.setItem("access_token", action.payload.access_token);
+        } else {
+          state.error = action.payload;
+        }
       })
       .addCase(login.rejected, (state, action) => {
         state.status = "failed";

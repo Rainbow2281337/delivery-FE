@@ -7,12 +7,14 @@ interface ListOfFieldsProps {
   title: string;
   value: string | null;
   isEditable?: boolean;
+  onEditClick?: () => void;
 }
 
 const ListOfFields: React.FC<ListOfFieldsProps> = ({
   title,
   value,
   isEditable,
+  onEditClick,
 }) => {
   const preferredLanguage = useSelector<RootState, string>(
     (state) => state.setLanguage.currentLanguage
@@ -50,7 +52,10 @@ const ListOfFields: React.FC<ListOfFieldsProps> = ({
             </div>
             {isEditable && (
               <div>
-                <button className="underline dark:text-white">
+                <button
+                  onClick={onEditClick}
+                  className="underline dark:text-white"
+                >
                   {translate("edit", preferredLanguage)}
                 </button>
               </div>
