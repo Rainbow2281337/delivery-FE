@@ -18,6 +18,8 @@ import { getRestaurants } from "../../../../state/restaurant/restaurant-slice";
 import { deleteRestaurant } from "../../../../state/admin/delete-restaurant-slice";
 import { useState } from "react";
 import AdminModalAddRestaurantComponent from "../../Modal/AdminModalAddRestaurantComponent";
+import Container from "../../../Container";
+import { translate } from "../../../../assets/i18n";
 
 const RestaurantsTableComponent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,6 +30,9 @@ const RestaurantsTableComponent = () => {
   const status = useSelector<RootState>((state) => state.getRestaurants.status);
   const deletionStatus = useSelector<RootState>(
     (state) => state.deleteRestaurant.status
+  );
+  const preferredLanguage = useSelector<RootState, string>(
+    (state) => state.setLanguage.currentLanguage
   );
 
   const handleRefresh = () => {
@@ -51,40 +56,72 @@ const RestaurantsTableComponent = () => {
   };
 
   return (
-    <div>
+    <Container>
       {restaurants && restaurants.length > 0 ? (
-        <div>
+        <div className="pt-40">
           <Table size="medium">
             <TableHead>
               <TableRow>
                 <TableCell sx={{ fontSize: 20, fontWeight: "bold" }}>
-                  Title
+                  <div className="dark:text-white">
+                    {translate("title", preferredLanguage)}
+                  </div>
                 </TableCell>
                 <TableCell sx={{ fontSize: 20, fontWeight: "bold" }}>
-                  Cuisine type
+                  <div className="dark:text-white">
+                    {translate("cuisineType", preferredLanguage)}
+                  </div>
                 </TableCell>
                 <TableCell sx={{ fontSize: 20, fontWeight: "bold" }}>
-                  Address
+                  <div className="dark:text-white">
+                    {translate("address", preferredLanguage)}
+                  </div>
                 </TableCell>
                 <TableCell sx={{ fontSize: 20, fontWeight: "bold" }}>
-                  Working hours
+                  <div className="dark:text-white">
+                    {translate("workingHours", preferredLanguage)}
+                  </div>
                 </TableCell>
                 <TableCell sx={{ fontSize: 20, fontWeight: "bold" }}>
-                  Phone number
+                  <div className="dark:text-white">
+                    {translate("phoneNumber", preferredLanguage)}
+                  </div>
                 </TableCell>
                 <TableCell sx={{ fontSize: 20, fontWeight: "bold" }}>
-                  Actions
+                  <div className="dark:text-white">
+                    {translate("actions", preferredLanguage)}
+                  </div>
                 </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {restaurants.map((restaurant) => (
                 <TableRow key={restaurant.id}>
-                  <TableCell>{restaurant.title}</TableCell>
-                  <TableCell>{restaurant.cuisineType}</TableCell>
-                  <TableCell>{restaurant.address}</TableCell>
-                  <TableCell>{`${restaurant.openHours} - ${restaurant.closeHours}`}</TableCell>
-                  <TableCell>{restaurant.phoneNumber}</TableCell>
+                  <TableCell>
+                    <div className="dark:text-neutral-400">
+                      {restaurant.title}
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <div className="dark:text-neutral-400">
+                      {restaurant.cuisineType}
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <div className="dark:text-neutral-400">
+                      {restaurant.address}
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <div className="dark:text-neutral-400">
+                      {`${restaurant.openHours} - ${restaurant.closeHours}`}
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <div className="dark:text-neutral-400">
+                      {restaurant.phoneNumber}
+                    </div>
+                  </TableCell>
                   <TableCell sx={{ display: "flex", gap: 1 }}>
                     <div title="Edit" className="cursor-pointer">
                       <EditIcon color="primary" />
@@ -117,10 +154,10 @@ const RestaurantsTableComponent = () => {
               </div>
               <div
                 title="Refresh"
-                className="cursor-pointer"
+                className="cursor-pointer dark:text-white"
                 onClick={handleRefresh}
               >
-                <RefreshIcon color="action" fontSize="large" />
+                <RefreshIcon fontSize="large" />
               </div>
             </div>
           </div>
@@ -150,7 +187,7 @@ const RestaurantsTableComponent = () => {
           handleModal={handleModal}
         />
       )}
-    </div>
+    </Container>
   );
 };
 

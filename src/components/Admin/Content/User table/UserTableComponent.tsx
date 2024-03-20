@@ -20,6 +20,8 @@ import { deleteUser } from "../../../../state/admin/delete-user-slice";
 import { useState } from "react";
 import AdminModalComponent from "../../Modal/AdminModalComponent";
 import SkeletonComponent from "../../../ui/SkeletonComponent";
+import Container from "../../../Container";
+import { translate } from "../../../../assets/i18n";
 
 const UserTableComponent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,6 +36,9 @@ const UserTableComponent = () => {
   );
   const deletionStatus = useSelector<RootState>(
     (state) => state.deleteUser.status
+  );
+  const preferredLanguage = useSelector<RootState, string>(
+    (state) => state.setLanguage.currentLanguage
   );
 
   const handleDelete = (userId: string | null) => {
@@ -57,44 +62,62 @@ const UserTableComponent = () => {
   };
 
   return (
-    <div>
+    <Container>
       {status === "loading" ? (
         <div>
           <SkeletonComponent />
         </div>
       ) : (
-        <div>
+        <div className="pt-40">
           <Table size="medium">
             <TableHead>
               <TableRow>
                 <TableCell sx={{ fontSize: 20, fontWeight: "bold" }}>
-                  First name
+                  <div className="dark:text-white">
+                    {translate("fullName", preferredLanguage)}
+                  </div>
                 </TableCell>
                 <TableCell sx={{ fontSize: 20, fontWeight: "bold" }}>
-                  Last name
+                  <div className="dark:text-white">
+                    {translate("address", preferredLanguage)}
+                  </div>
                 </TableCell>
                 <TableCell sx={{ fontSize: 20, fontWeight: "bold" }}>
-                  Address
+                  <div className="dark:text-white">
+                    {translate("phoneNumber", preferredLanguage)}
+                  </div>
                 </TableCell>
                 <TableCell sx={{ fontSize: 20, fontWeight: "bold" }}>
-                  Phone number
+                  <div className="dark:text-white">
+                    {translate("role", preferredLanguage)}
+                  </div>
                 </TableCell>
                 <TableCell sx={{ fontSize: 20, fontWeight: "bold" }}>
-                  Role
-                </TableCell>
-                <TableCell sx={{ fontSize: 20, fontWeight: "bold" }}>
-                  Actions
+                  <div className="dark:text-white">
+                    {translate("actions", preferredLanguage)}
+                  </div>
                 </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {users.map((user) => (
                 <TableRow key={user.id}>
-                  <TableCell>{user.firstName}</TableCell>
-                  <TableCell>{user.lastName}</TableCell>
-                  <TableCell>{user.address}</TableCell>
-                  <TableCell>{user.phoneNumber}</TableCell>
-                  <TableCell>{user.role}</TableCell>
+                  <TableCell>
+                    <div className="dark:text-neutral-400">
+                      {user.firstName} {user.lastName}
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <div className="dark:text-neutral-400">{user.address}</div>
+                  </TableCell>
+                  <TableCell>
+                    <div className="dark:text-neutral-400">
+                      {user.phoneNumber}
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <div className="dark:text-neutral-400">{user.role}</div>
+                  </TableCell>
                   <TableCell sx={{ display: "flex", gap: 1 }}>
                     <div title="Edit" className="cursor-pointer">
                       <EditIcon color="primary" />
@@ -126,10 +149,10 @@ const UserTableComponent = () => {
             </div>
             <div
               title="Refresh"
-              className="cursor-pointer"
+              className="cursor-pointer dark:text-white"
               onClick={handleRefresh}
             >
-              <RefreshIcon color="action" fontSize="large" />
+              <RefreshIcon fontSize="large" />
             </div>
           </div>
         </div>
@@ -145,7 +168,7 @@ const UserTableComponent = () => {
       {isModalOpen && (
         <AdminModalComponent isOpen={isModalOpen} handleModal={handleModal} />
       )}
-    </div>
+    </Container>
   );
 };
 

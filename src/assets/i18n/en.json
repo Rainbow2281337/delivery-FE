@@ -41,7 +41,14 @@
 	"this_action_cannot_be_canceled.": "This action cannot be canceled.",
 	"cancel": "Cancel",
 	"deleteAccount": "Delete account",
+	"workingHours": "Working Hours",
 	"choose_a_language_and_region": "Choose a language and region",
 	"light": "Light",
-	"dark": "Dark"
+	"dark": "Dark",
+	"users": "Users",
+	"restaurants": "Restaurants",
+	"title": "Title",
+	"cuisineType": "Cuisine type",
+	"actions": "Actions",
+	"role": "Role"
 }

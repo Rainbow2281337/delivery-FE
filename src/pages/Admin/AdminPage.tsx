@@ -3,7 +3,7 @@ import UserTableComponent from "../../components/Admin/Content/User table/UserTa
 import { AppDispatch } from "../../state/store";
 import { useEffect } from "react";
 import { getUserTable } from "../../state/admin/get-users-slice";
-import ActionNavComponent from "../../components/Admin/Action Nav/ActionNavComponent";
+import AdminNav from "../../components/Admin/AdminNavbar/AdminNav";
 
 const AdminPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -18,10 +18,8 @@ const AdminPage = () => {
 
   return (
     <>
-      <ActionNavComponent />
-      <div className="mx-3">
-        <UserTableComponent />
-      </div>
+      <AdminNav />
+      <UserTableComponent />
     </>
   );
 };

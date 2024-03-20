@@ -44,5 +44,11 @@
 	"workingHours": "Робочі години",
 	"choose_a_language_and_region": "Оберіть мову та регіон",
 	"light": "Світла",
-	"dark": "Темна"
+	"dark": "Темна",
+	"users": "Користувачі",
+	"restaurants": "Ресторани",
+	"title": "Назва",
+	"cuisineType": "Тип кухні",
+	"actions": "Дії",
+	"role": "Роль"
 }
