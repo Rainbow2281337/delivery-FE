@@ -16,6 +16,7 @@ const style = {
   width: 400,
   bgcolor: "background.paper",
   boxShadow: 24,
+  borderRadius: 4,
   p: 4,
 };
 
@@ -31,7 +32,7 @@ const DishDetailedInfoModal: React.FC<DishDetailedInfoModalProps> = ({
           <div>
             <div>
               <img
-                src="https://images.pexels.com/photos/1640770/pexels-photo-1640770.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                src="https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                 alt="dish"
                 className="h-72 object-cover rounded-xl"
               />

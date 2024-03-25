@@ -54,5 +54,14 @@
 	"dashboard": "Загальна інформація",
 	"total_users": "Всього користувачів",
 	"total_restaurants": "Всього ресторанів",
-	"total_categories": "Всього категорій"
+	"total_categories": "Всього категорій",
+	"pizza": "Піца",
+	"burger": "Бургер",
+	"sushi": "Суші",
+	"salad": "Салат",
+	"price": "Ціна",
+	"reviews": "Відгуки",
+	"total_reviews": "Кілкість відгуків",
+	"average_rating": "Середня оцінка",
+	"post_review": "Опублікувати відгук"
 }

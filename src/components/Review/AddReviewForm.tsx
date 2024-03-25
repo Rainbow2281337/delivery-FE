@@ -4,14 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../state/store";
 import { useParams } from "react-router-dom";
 import { addReview } from "../../state/review/add-review.slice";
+import { translate } from "../../assets/i18n";
 
 const AddReviewForm = () => {
   const dispatch = useDispatch<AppDispatch>();
   const error: string | null = useSelector<RootState, string | null>(
     (state) => state.addReview.error
   );
+  const preferredLanguage = useSelector<RootState, string>(
+    (state) => state.setLanguage.currentLanguage
+  );
   const { id } = useParams();
-  const [rating, setRating] = useState<number | null>(0);
+  const [rating, setRating] = useState<number | null>(1);
   const [comment, setComment] = useState<string>("");
 
   const handleCommentChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -35,8 +39,8 @@ const AddReviewForm = () => {
 
   return (
     <form className="mb-8" onSubmit={handleSubmit}>
-      <div>
-        <div>
+      <div className="">
+        <div className="dark:bg-white rounded-lg">
           <TextField
             id="userComment"
             variant="outlined"
@@ -44,11 +48,12 @@ const AddReviewForm = () => {
             multiline
             maxRows={15}
             value={comment}
+            placeholder="Type here..."
             onChange={handleCommentChange}
           />
         </div>
-        <div className="flex flex-col gap-2 items-center justify-center">
-          <div>
+        <div className="flex flex-col items-center justify-center">
+          <div className="my-4">
             <Rating
               id="userRating"
               value={rating}
@@ -59,7 +64,7 @@ const AddReviewForm = () => {
           </div>
           <div>
             <Button variant="contained" type="submit">
-              Post Review
+              {translate("post_review", preferredLanguage)}
             </Button>
           </div>
         </div>

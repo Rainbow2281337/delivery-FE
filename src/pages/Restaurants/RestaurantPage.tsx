@@ -22,10 +22,12 @@ const RestaurantPage = () => {
 
   return (
     <>
-      <TopBar />
-      <RestaurantHeroComponent />
-      <DishList />
-      <ReviewList />
+      <div className="dark:bg-neutral-800">
+        <TopBar />
+        <RestaurantHeroComponent />
+        <DishList />
+        <ReviewList />
+      </div>
     </>
   );
 };

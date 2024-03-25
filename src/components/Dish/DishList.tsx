@@ -6,6 +6,9 @@ import { getDishes } from "../../state/restaurant/dish/dish-slice";
 import DishItem from "./DishItem";
 import { Dish } from "../../interfaces/dish-interface";
 import DishFilter from "./DishFilter";
+import Container from "../Container";
+import NoMatches from "../NoMatches";
+import SkeletonComponent from "../ui/SkeletonComponent";
 
 const DishList = () => {
   const { id } = useParams();
@@ -13,7 +16,8 @@ const DishList = () => {
   const dishes = useSelector<RootState, Dish[]>(
     (state) => state.getDishes.dishes
   );
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const status = useSelector<RootState>((state) => state.getDishes.status);
+  const [selectedType, setSelectedType] = useState<string | null>(null);
 
   useEffect(() => {
     try {
@@ -23,35 +27,48 @@ const DishList = () => {
     }
   }, [id, dispatch]);
 
-  const filteredItems = selectedCategory
-    ? dishes.filter((dish) => dish.category === selectedCategory)
+  const filteredFood = selectedType
+    ? dishes.filter((dish) => dish.category === selectedType)
     : dishes;
 
-  // handle category selection
-  const handleCategorySelect = (category: string) => {
-    setSelectedCategory(category === selectedCategory ? null : category);
-  };
-
-  const clearFilter = () => {
-    setSelectedCategory(null);
+  // handle type selection
+  const handleTypeSelect = (type: string | null) => {
+    setSelectedType(type === selectedType ? null : type);
   };
 
   return (
-    <div className="mt-8 w-[80%] mx-auto">
-      <DishFilter
-        dishes={dishes}
-        selectedCategory={selectedCategory}
-        handleCategorySelect={handleCategorySelect}
-        clearFilter={clearFilter}
-      />
-      <ul className="flex items-center justify-center 2xl:items-start 2xl:justify-start gap-4 flex-wrap">
-        {filteredItems.map((dish) => (
-          <li key={dish.id}>
-            <DishItem dish={dish} />
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Container>
+      <div className="pb-20">
+        <DishFilter
+          selectedType={selectedType}
+          handleTypeSelect={handleTypeSelect}
+        />
+        {filteredFood.length === 0 ? (
+          <NoMatches />
+        ) : (
+          <div
+            className="
+              pt-8
+              grid
+              grid-cols-1
+              gap-3
+              sm:grid-cols-2
+              md:grid-cols-3
+              md:gap-4
+              lg:grid-cols-4
+              xl:grid-cols-5
+              2xl:grid-cols-6
+            "
+          >
+            {status === "loading" ? (
+              <SkeletonComponent />
+            ) : (
+              filteredFood.map((food) => <DishItem key={food.id} dish={food} />)
+            )}
+          </div>
+        )}
+      </div>
+    </Container>
   );
 };
 

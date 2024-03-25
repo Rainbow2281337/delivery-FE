@@ -5,6 +5,7 @@ import ReviewItem from "./ReviewItem";
 import { Restaurant } from "../../interfaces/restaurant-interface";
 import ReviewsInfo from "./ReviewsInfo";
 import AddReviewForm from "./AddReviewForm";
+import Container from "../Container";
 
 const ReviewList = () => {
   const reviews = useSelector<RootState, Review[]>(
@@ -14,7 +15,7 @@ const ReviewList = () => {
     (state) => state.findRestaurantById
   );
   return (
-    <div className="w-[80%] mx-auto mb-2">
+    <Container>
       <div>
         <ReviewsInfo restaurantData={restaurant} />
       </div>
@@ -30,7 +31,7 @@ const ReviewList = () => {
           ))}
         </ul>
       </div>
-    </div>
+    </Container>
   );
 };
 

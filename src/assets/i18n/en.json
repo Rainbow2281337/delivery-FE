@@ -54,5 +54,14 @@
 	"dashboard": "Dashboard",
 	"total_users": "Total users",
 	"total_restaurants": "Total restaurants",
-	"total_categories": "Total categories"
+	"total_categories": "Total categories",
+	"pizza": "Pizza",
+	"burger": "Burger",
+	"sushi": "Sushi",
+	"salad": "Salad",
+	"price": "Price",
+	"reviews": "Reviews",
+	"total_reviews": "Total reviews",
+	"average_rating": "Average rating",
+	"post_review": "Post review"
 }

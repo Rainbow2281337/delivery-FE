@@ -9,7 +9,7 @@ interface ReviewItemProps {
 const ReviewItem: React.FC<ReviewItemProps> = ({ review }) => {
   return (
     <div>
-      <div className="flex flex-col gap-4 items-start md:flex-row md:gap-0 md:items-center justify-around p-4 border-t border-gray-200">
+      <div className="flex flex-col gap-4 items-start md:flex-row md:gap-0 md:items-center justify-around p-4 border-t dark:border-neutral-600">
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
             <PersonOutlineOutlinedIcon
@@ -17,7 +17,7 @@ const ReviewItem: React.FC<ReviewItemProps> = ({ review }) => {
               className="text-white"
             />
           </div>
-          <div className="font-medium text-md md:text-lg">
+          <div className="font-medium text-md md:text-lg dark:text-white">
             {review?.userFirstName}
           </div>
         </div>
@@ -30,7 +30,7 @@ const ReviewItem: React.FC<ReviewItemProps> = ({ review }) => {
               {review?.rating}
             </div>
           </div>
-          <div className="font-medium text-md md:text-lg text-gray-400">
+          <div className="font-medium text-md md:text-lg text-neutral-500 dark:text-neutral-300">
             {review?.comment}
           </div>
         </div>

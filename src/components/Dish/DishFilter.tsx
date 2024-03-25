@@ -1,51 +1,71 @@
-import { Dish } from "../../interfaces/dish-interface";
+import { useSelector } from "react-redux";
+import { RootState } from "../../state/store";
+import { translate } from "../../assets/i18n";
+import LocalPizzaOutlinedIcon from "@mui/icons-material/LocalPizzaOutlined";
+import LunchDiningOutlinedIcon from "@mui/icons-material/LunchDiningOutlined";
+import SetMealOutlinedIcon from "@mui/icons-material/SetMealOutlined";
+import TakeoutDiningOutlinedIcon from "@mui/icons-material/TakeoutDiningOutlined";
+import Container from "../Container";
+import CategoryBox from "../CategoryBox";
 
-interface DishFilterProps {
-  dishes: Dish[];
-  selectedCategory: string | null;
-  handleCategorySelect: (category: string) => void;
-  clearFilter: () => void;
+interface CategoriesProps {
+  selectedType: string | null;
+  handleTypeSelect: (type: string | null) => void;
 }
 
-const DishFilter: React.FC<DishFilterProps> = ({
-  dishes,
-  selectedCategory,
-  handleCategorySelect,
-  clearFilter,
+const DishFilter: React.FC<CategoriesProps> = ({
+  selectedType,
+  handleTypeSelect,
 }) => {
-  // remove duplicates
-  const uniqueCategories = Array.from(
-    new Set(dishes.map((dish) => dish.category))
+  const preferredLanguage = useSelector<RootState, string>(
+    (state) => state.setLanguage.currentLanguage
   );
 
+  const categories = [
+    {
+      category: translate("pizza", preferredLanguage),
+      icon: <LocalPizzaOutlinedIcon fontSize="large" />,
+    },
+    {
+      category: translate("burger", preferredLanguage),
+      icon: <LunchDiningOutlinedIcon fontSize="large" />,
+    },
+    {
+      category: translate("sushi", preferredLanguage),
+      icon: <SetMealOutlinedIcon fontSize="large" />,
+    },
+    {
+      category: translate("salad", preferredLanguage),
+      icon: <TakeoutDiningOutlinedIcon fontSize="large" />,
+    },
+  ];
+
   return (
-    <div className="mb-6">
-      <ul className="flex flex-wrap gap-4 items-center justify-center 2xl:items-start 2xl:justify-start">
-        <li
-          onClick={clearFilter}
-          className={`${
-            selectedCategory === null
-              ? "py-1 px-4 cursor-pointer bg-[#272a27]/85 rounded-lg"
-              : "py-1 px-4 cursor-pointer bg-[#272a27] rounded-lg hover:opacity-85 duration-200"
-          }`}
-        >
-          <button className="text-lg font-bold text-white">All</button>
-        </li>
-        {uniqueCategories.map((category) => (
+    <Container>
+      <div
+        className="
+          pt-4
+          flex
+          flex-row
+          items-center
+          justify-between
+          overflow-x-auto
+        "
+      >
+        {categories.map((item) => (
           <div
-            key={category}
-            onClick={() => handleCategorySelect(category)}
-            className={`${
-              selectedCategory === category
-                ? "py-1 px-4 cursor-pointer bg-[#272a27]/85 rounded-lg"
-                : "py-1 px-4 cursor-pointer bg-[#272a27] rounded-lg hover:opacity-85 duration-200"
-            }`}
+            key={item.category}
+            onClick={() => handleTypeSelect(item.category)}
           >
-            <li className="text-lg font-bold text-white">{category}</li>
+            <CategoryBox
+              category={item.category}
+              icon={item.icon}
+              selected={selectedType === item.category}
+            />
           </div>
         ))}
-      </ul>
-    </div>
+      </div>
+    </Container>
   );
 };
 

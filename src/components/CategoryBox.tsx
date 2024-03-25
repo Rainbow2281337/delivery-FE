@@ -1,12 +1,12 @@
 interface CategoryBoxProps {
   icon: React.ReactNode;
-  cuisine: string;
+  category: string;
   selected?: boolean;
 }
 
 const CategoryBox: React.FC<CategoryBoxProps> = ({
   icon,
-  cuisine,
+  category,
   selected,
 }) => {
   return (
@@ -36,7 +36,7 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
       `}
     >
       {icon}
-      <div className="font-medium text-sm">{cuisine}</div>
+      <div className="font-medium text-sm">{category}</div>
     </div>
   );
 };
