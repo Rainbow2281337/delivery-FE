@@ -50,5 +50,9 @@
 	"title": "Назва",
 	"cuisineType": "Тип кухні",
 	"actions": "Дії",
-	"role": "Роль"
+	"role": "Роль",
+	"dashboard": "Загальна інформація",
+	"total_users": "Всього користувачів",
+	"total_restaurants": "Всього ресторанів",
+	"total_categories": "Всього категорій"
 }

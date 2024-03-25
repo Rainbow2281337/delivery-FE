@@ -1,6 +1,7 @@
 import Login from "../pages/Login/Login";
 import Registration from "../pages/Registration/Registration";
 import {
+  ADMIN_DASHBOARD_ROUTE,
   ADMIN_RESTAURANTS_ROUTE,
   ADMIN_ROUTE,
   DEFAULT_ROUTE,
@@ -21,6 +22,7 @@ import AdminRestaurantsPage from "../pages/Admin/AdminRestaurantsPage";
 import PersonalInfoPage from "../pages/Profile/PersonalInfoPage";
 import DeactivateAccountPage from "../pages/Profile/DeactivateAccountPage";
 import PreferencesPage from "../pages/Profile/PreferencesPage";
+import DashboardPage from "../pages/Admin/DashboardPage";
 
 export const authRoutes: RouteItem[] = [
   {
@@ -57,6 +59,10 @@ export const adminRoutes: RouteItem[] = [
   {
     path: ADMIN_RESTAURANTS_ROUTE,
     Component: AdminRestaurantsPage,
+  },
+  {
+    path: ADMIN_DASHBOARD_ROUTE,
+    Component: DashboardPage,
   },
 ];
 

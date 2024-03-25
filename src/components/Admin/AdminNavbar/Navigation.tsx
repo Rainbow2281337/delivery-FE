@@ -1,5 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { ADMIN_RESTAURANTS_ROUTE, ADMIN_ROUTE } from "../../../consts";
+import {
+  ADMIN_DASHBOARD_ROUTE,
+  ADMIN_RESTAURANTS_ROUTE,
+  ADMIN_ROUTE,
+} from "../../../consts";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../state/store";
 import { translate } from "../../../assets/i18n";
@@ -58,6 +62,21 @@ const Navigation = () => {
 		"
         >
           {translate("restaurants", preferredLanguage)}
+        </div>
+        <div
+          onClick={() => navigate(ADMIN_DASHBOARD_ROUTE)}
+          className="
+			hidden
+			sm:block
+			text-sm
+			font-semibold
+			px-6
+			border-l-[1px]
+			flex-1
+			text-center
+		"
+        >
+          {translate("dashboard", preferredLanguage)}
         </div>
       </div>
     </div>

@@ -50,5 +50,9 @@
 	"title": "Title",
 	"cuisineType": "Cuisine type",
 	"actions": "Actions",
-	"role": "Role"
+	"role": "Role",
+	"dashboard": "Dashboard",
+	"total_users": "Total users",
+	"total_restaurants": "Total restaurants",
+	"total_categories": "Total categories"
 }
