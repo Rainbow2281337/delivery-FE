@@ -14,15 +14,18 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import AddIcon from "@mui/icons-material/Add";
+import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import { getRestaurants } from "../../../../state/restaurant/restaurant-slice";
 import { deleteRestaurant } from "../../../../state/admin/delete-restaurant-slice";
 import { useState } from "react";
 import AdminModalAddRestaurantComponent from "../../Modal/AdminModalAddRestaurantComponent";
 import Container from "../../../Container";
 import { translate } from "../../../../assets/i18n";
+import { CSVDownload } from "react-csv";
 
 const RestaurantsTableComponent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDataDownload, setIsDataDownload] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   const restaurants = useSelector<RootState, Restaurant[]>(
     (state) => state.getRestaurants.restaurants
@@ -34,6 +37,18 @@ const RestaurantsTableComponent = () => {
   const preferredLanguage = useSelector<RootState, string>(
     (state) => state.setLanguage.currentLanguage
   );
+
+  const data = restaurants.map((restaurant) => ({
+    Title: restaurant.title,
+    "Cusine type": restaurant.cuisineType,
+    Address: restaurant.address,
+    "Working hours": `${restaurant.openHours} ${restaurant.closeHours}`,
+    "Phone number": restaurant.phoneNumber,
+  }));
+
+  const handleDataDownload = () => {
+    setIsDataDownload((value) => !value);
+  };
 
   const handleRefresh = () => {
     try {
@@ -159,6 +174,16 @@ const RestaurantsTableComponent = () => {
               >
                 <RefreshIcon fontSize="large" />
               </div>
+              <div
+                title="Download"
+                className="cursor-pointer dark:text-white"
+                onClick={handleDataDownload}
+              >
+                <DownloadOutlinedIcon fontSize="large" />
+                {isDataDownload && (
+                  <CSVDownload data={data} filename="Restaurants"></CSVDownload>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -173,14 +198,6 @@ const RestaurantsTableComponent = () => {
           )}
         </div>
       )}
-      {/* <Snackbar open={deletionStatus === "succeeded"}>
-        <Alert severity="success">User deleted</Alert>
-      </Snackbar>
-      <Snackbar open={statusOfUserAdd === "succeeded"}>
-        <Alert severity="success">
-          User {nameOfAddedUser ? `(${nameOfAddedUser})` : ""} added
-        </Alert>
-      </Snackbar> */}
       {isModalOpen && (
         <AdminModalAddRestaurantComponent
           isOpen={isModalOpen}

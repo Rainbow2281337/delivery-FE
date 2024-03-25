@@ -13,6 +13,7 @@ import { User } from "../../../../interfaces/user-interface";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import RefreshIcon from "@mui/icons-material/Refresh";
+import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import AddIcon from "@mui/icons-material/Add";
 import CircularProgress from "@mui/material/CircularProgress";
 import { getUserTable } from "../../../../state/admin/get-users-slice";
@@ -22,9 +23,11 @@ import AdminModalComponent from "../../Modal/AdminModalComponent";
 import SkeletonComponent from "../../../ui/SkeletonComponent";
 import Container from "../../../Container";
 import { translate } from "../../../../assets/i18n";
+import { CSVDownload } from "react-csv";
 
 const UserTableComponent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDataDownload, setIsDataDownload] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   const users = useSelector<RootState, User[]>(
     (state) => state.userTable.users
@@ -40,6 +43,17 @@ const UserTableComponent = () => {
   const preferredLanguage = useSelector<RootState, string>(
     (state) => state.setLanguage.currentLanguage
   );
+
+  const data = users.map((user) => ({
+    fullName: `${user.firstName} ${user.lastName}`,
+    address: user.address,
+    phoneNumber: user.phoneNumber,
+    role: user.role,
+  }));
+
+  const handleDataDownload = () => {
+    setIsDataDownload((value) => !value);
+  };
 
   const handleDelete = (userId: string | null) => {
     try {
@@ -139,7 +153,7 @@ const UserTableComponent = () => {
               ))}
             </TableBody>
           </Table>
-          <div className="flex mt-2">
+          <div className="flex gap-1 mt-2">
             <div
               title="Add user"
               className="cursor-pointer"
@@ -153,6 +167,16 @@ const UserTableComponent = () => {
               onClick={handleRefresh}
             >
               <RefreshIcon fontSize="large" />
+            </div>
+            <div
+              title="Download"
+              className="cursor-pointer dark:text-white"
+              onClick={handleDataDownload}
+            >
+              <DownloadOutlinedIcon fontSize="large" />
+              {isDataDownload && (
+                <CSVDownload data={data} filename="Users"></CSVDownload>
+              )}
             </div>
           </div>
         </div>

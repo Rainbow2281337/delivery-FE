@@ -5,6 +5,7 @@ import LocalPizzaOutlinedIcon from "@mui/icons-material/LocalPizzaOutlined";
 import LunchDiningOutlinedIcon from "@mui/icons-material/LunchDiningOutlined";
 import SetMealOutlinedIcon from "@mui/icons-material/SetMealOutlined";
 import TakeoutDiningOutlinedIcon from "@mui/icons-material/TakeoutDiningOutlined";
+import KebabDiningOutlinedIcon from "@mui/icons-material/KebabDiningOutlined";
 import Container from "../Container";
 import CategoryBox from "../CategoryBox";
 
@@ -24,19 +25,28 @@ const DishFilter: React.FC<CategoriesProps> = ({
   const categories = [
     {
       category: translate("pizza", preferredLanguage),
+      value: "Pizza",
       icon: <LocalPizzaOutlinedIcon fontSize="large" />,
     },
     {
       category: translate("burger", preferredLanguage),
+      value: "Burger",
       icon: <LunchDiningOutlinedIcon fontSize="large" />,
     },
     {
       category: translate("sushi", preferredLanguage),
+      value: "Sushi",
       icon: <SetMealOutlinedIcon fontSize="large" />,
     },
     {
       category: translate("salad", preferredLanguage),
+      value: "Salad",
       icon: <TakeoutDiningOutlinedIcon fontSize="large" />,
+    },
+    {
+      category: translate("meat", preferredLanguage),
+      value: "Meat",
+      icon: <KebabDiningOutlinedIcon fontSize="large" />,
     },
   ];
 
@@ -53,14 +63,11 @@ const DishFilter: React.FC<CategoriesProps> = ({
         "
       >
         {categories.map((item) => (
-          <div
-            key={item.category}
-            onClick={() => handleTypeSelect(item.category)}
-          >
+          <div key={item.category} onClick={() => handleTypeSelect(item.value)}>
             <CategoryBox
               category={item.category}
               icon={item.icon}
-              selected={selectedType === item.category}
+              selected={selectedType === item.value}
             />
           </div>
         ))}

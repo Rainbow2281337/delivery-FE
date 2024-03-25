@@ -29,58 +29,72 @@ const Categories: React.FC<CategoriesProps> = ({
   const categories = [
     {
       cuisine: translate("chinese", preferredLanguage),
+      value: "Chinese",
       icon: <RiceBowlOutlinedIcon fontSize="large" />,
     },
     {
       cuisine: translate("mexican", preferredLanguage),
+      value: "Mexican",
       icon: <EggAltOutlinedIcon fontSize="large" />,
     },
     {
       cuisine: translate("korean", preferredLanguage),
+      value: "Korean",
       icon: <RamenDiningOutlinedIcon fontSize="large" />,
     },
     {
       cuisine: translate("vietnamese", preferredLanguage),
+      value: "Vietnamese",
       icon: <EggAltOutlinedIcon fontSize="large" />,
     },
     {
       cuisine: translate("italian", preferredLanguage),
+      value: "Italian",
       icon: <LocalPizzaOutlinedIcon fontSize="large" />,
     },
     {
       cuisine: translate("thai", preferredLanguage),
+      value: "Thai",
       icon: <RamenDiningOutlinedIcon fontSize="large" />,
     },
     {
       cuisine: translate("french", preferredLanguage),
+      value: "French",
       icon: <BakeryDiningOutlinedIcon fontSize="large" />,
     },
     {
       cuisine: translate("american", preferredLanguage),
+      value: "American",
       icon: <FastfoodOutlinedIcon fontSize="large" />,
     },
     {
       cuisine: translate("spanish", preferredLanguage),
+      value: "Spanish",
       icon: <KebabDiningOutlinedIcon fontSize="large" />,
     },
     {
       cuisine: translate("indian", preferredLanguage),
+      value: "Indian",
       icon: <RamenDiningOutlinedIcon fontSize="large" />,
     },
     {
       cuisine: translate("japanese", preferredLanguage),
+      value: "Japanese",
       icon: <TakeoutDiningOutlinedIcon fontSize="large" />,
     },
     {
       cuisine: translate("greek", preferredLanguage),
+      value: "Greek",
       icon: <RiceBowlOutlinedIcon fontSize="large" />,
     },
     {
       cuisine: translate("turkish", preferredLanguage),
+      value: "Turkish",
       icon: <KebabDiningOutlinedIcon fontSize="large" />,
     },
     {
       cuisine: translate("ukrainian", preferredLanguage),
+      value: "Ukrainian",
       icon: <SoupKitchenOutlinedIcon fontSize="large" />,
     },
   ];
@@ -97,14 +111,11 @@ const Categories: React.FC<CategoriesProps> = ({
         "
       >
         {categories.map((item) => (
-          <div
-            key={item.cuisine}
-            onClick={() => handleTypeSelect(item.cuisine)}
-          >
+          <div key={item.cuisine} onClick={() => handleTypeSelect(item.value)}>
             <CategoryBox
               category={item.cuisine}
               icon={item.icon}
-              selected={selectedType === item.cuisine}
+              selected={selectedType === item.value}
             />
           </div>
         ))}
