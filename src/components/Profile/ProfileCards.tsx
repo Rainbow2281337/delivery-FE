@@ -86,7 +86,10 @@ const ProfileCards = () => {
       >
         {profileActions
           .filter(
-            (action) => action.title !== "Admin panel" || role === "ADMIN"
+            (action) =>
+              (action.title !== "Admin panel" &&
+                action.title !== "Панель адміністратора") ||
+              role === "ADMIN"
           )
           .map((action) => (
             <ProfileCard

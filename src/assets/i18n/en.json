@@ -38,7 +38,7 @@
 	"address": "Address",
 	"this_account_will_disappear": "This account will disappear.",
 	"you_won’t_be_able_to_access_the_account": "You won’t be able to access the account.",
-	"this_action_cannot_be_canceled.": "This action cannot be canceled.",
+	"this_action_cannot_be_canceled": "This action cannot be canceled.",
 	"cancel": "Cancel",
 	"deleteAccount": "Delete account",
 	"workingHours": "Working Hours",
