@@ -64,5 +64,14 @@
 	"reviews": "Відгуки",
 	"total_reviews": "Кілкість відгуків",
 	"average_rating": "Середня оцінка",
-	"post_review": "Опублікувати відгук"
+	"post_review": "Опублікувати відгук",
+	"my_orders": "Мої замовлення",
+	"see_my_orders": "Подивитися мої замовлення",
+	"total_price": "До сплати",
+	"paid": "Сплачено",
+	"pay": "Сплатити",
+	"minutes": "хвилин",
+	"average_waiting_time": "Середній час очікування",
+	"cancel_order": "Відмінити замовлення",
+	"place_feedback": "Залишити відгук"
 }

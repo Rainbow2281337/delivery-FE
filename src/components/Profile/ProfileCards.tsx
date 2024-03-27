@@ -3,6 +3,7 @@ import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
 import DisplaySettingsOutlinedIcon from "@mui/icons-material/DisplaySettingsOutlined";
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import GppBadOutlinedIcon from "@mui/icons-material/GppBadOutlined";
+import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import ProfileCard from "./ProfileCard";
 import Heading from "../Heading";
 import { useSelector } from "react-redux";
@@ -10,6 +11,7 @@ import { RootState } from "../../state/store";
 import {
   ADMIN_ROUTE,
   PROFILE_DEACTIVATE_ACCOUNT_ROUTE,
+  PROFILE_ORDERS_ROUTE,
   PROFILE_PERSONAL_INFO_ROUTE,
   PROFILE_PREFERENCES_ROUTE,
 } from "../../consts";
@@ -60,6 +62,12 @@ const ProfileCards = () => {
         preferredLanguage
       ),
       navigation: ADMIN_ROUTE,
+    },
+    {
+      icon: <BookmarkBorderOutlinedIcon fontSize="large" />,
+      title: translate("my_orders", preferredLanguage),
+      description: translate("see_my_orders", preferredLanguage),
+      navigation: PROFILE_ORDERS_ROUTE,
     },
   ];
   return (

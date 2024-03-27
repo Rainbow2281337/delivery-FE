@@ -15,13 +15,13 @@ const DashboardCard: React.FC<DashboardCardProps> = ({ title, value }) => {
         items-start
         justify-start
         p-4
-      bg-neutral-100
-      hover:bg-neutral-50
+        bg-neutral-100
+        hover:bg-neutral-50
         rounded-lg
         shadow-md
         transition
-      dark:bg-neutral-800
-      dark:hover:bg-neutral-700
+        dark:bg-neutral-800
+        dark:hover:bg-neutral-700
 		  "
     >
       <div className="mb-1 text-xl md:text-2xl font-semibold dark:text-white">

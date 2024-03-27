@@ -64,5 +64,14 @@
 	"reviews": "Reviews",
 	"total_reviews": "Total reviews",
 	"average_rating": "Average rating",
-	"post_review": "Post review"
+	"post_review": "Post review",
+	"my_orders": "My orders",
+	"see_my_orders": "See my orders",
+	"total_price": "Total price",
+	"paid": "Paid",
+	"pay": "Pay",
+	"minutes": "minutes",
+	"average_waiting_time": "Average waiting time",
+	"cancel_order": "Cancel order",
+	"place_feedback": "Place feedback"
 }

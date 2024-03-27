@@ -6,6 +6,7 @@ export const PROFILE_ROUTE: string = "/profile";
 export const PROFILE_PERSONAL_INFO_ROUTE: string = "/profile/personal-info";
 export const PROFILE_PREFERENCES_ROUTE: string = "/profile/preferences";
 export const PROFILE_DEACTIVATE_ACCOUNT_ROUTE: string = "/profile/deactivate";
+export const PROFILE_ORDERS_ROUTE: string = "/profile/orders";
 export const ADMIN_ROUTE: string = "/admin";
 export const ADMIN_RESTAURANTS_ROUTE: string = "/admin/restaurants";
 export const ADMIN_DASHBOARD_ROUTE: string = "/admin/dashboard";

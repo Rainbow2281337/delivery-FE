@@ -1,6 +1,6 @@
 interface HeadingProps {
   title: string;
-  subtitle: string | null;
+  subtitle?: string | null;
   center?: boolean;
 }
 
