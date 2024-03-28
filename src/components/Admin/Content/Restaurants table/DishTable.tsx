@@ -102,7 +102,9 @@ const DishTable = () => {
                     <div className="dark:text-neutral-400">{dish.price}₴</div>
                   </TableCell>
                   <TableCell>
-                    <div className="dark:text-neutral-400">{dish.weight}</div>
+                    <div className="dark:text-neutral-400">
+                      {dish.weight} {translate("gram", preferredLanguage)}
+                    </div>
                   </TableCell>
                   <TableCell>
                     <div className="dark:text-neutral-400">

@@ -77,5 +77,8 @@
 	"weight": "Weight",
 	"description": "Description",
 	"calories": "Calories",
-	"category": "Category"
+	"category": "Category",
+	"gram": "Gram",
+	"kcal": "Kcal",
+	"add_to_cart": "Add to cart"
 }

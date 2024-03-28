@@ -76,5 +76,8 @@
 	"weight": "Вага",
 	"description": "Опис",
 	"calories": "Калорії",
-	"category": "Категорія"
+	"category": "Категорія",
+	"gram": "Грам",
+	"kcal": "Ккалорій",
+	"add_to_cart": "Додати до кошика"
 }

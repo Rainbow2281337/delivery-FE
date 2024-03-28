@@ -1,6 +1,9 @@
-import { Box, Button, Modal } from "@mui/material";
+import { Box, Modal } from "@mui/material";
 import { Dish } from "../../interfaces/dish-interface";
 import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../state/store";
+import { translate } from "../../assets/i18n";
 
 interface DishDetailedInfoModalProps {
   dishInfo: Dish;
@@ -25,6 +28,9 @@ const DishDetailedInfoModal: React.FC<DishDetailedInfoModalProps> = ({
   isOpen,
   handleModal,
 }) => {
+  const preferredLanguage = useSelector<RootState, string>(
+    (state) => state.setLanguage.currentLanguage
+  );
   return (
     <div className="absolute">
       <Modal open={isOpen} onClose={handleModal}>
@@ -46,16 +52,25 @@ const DishDetailedInfoModal: React.FC<DishDetailedInfoModalProps> = ({
               <span className="text-xl font-semibold">{dishInfo.price} ₴</span>
             </div>
             <div className="mb-6">
-              <ul className="flex gap-2">
+              <ul className="flex items-start justify-start gap-1">
                 {dishInfo.ingredients.map((ingredient, index) => (
                   <li key={index} className="text-gray-400 font-medium">
                     {ingredient},
                   </li>
                 ))}
+                <li className="text-gray-400 font-medium">
+                  {dishInfo.weight} {translate("gram", preferredLanguage)}
+                  {" / "}
+                </li>
+                <li className="text-gray-400 font-medium">
+                  {dishInfo.calories} {translate("kcal", preferredLanguage)}
+                </li>
               </ul>
             </div>
             <div className="flex items-center justify-center">
-              <Button variant="contained">Add to cart</Button>
+              <button className="w-full py-2 border rounded-lg bg-green-500 hover:bg-green-600 transition text-white font-medium">
+                {translate("add_to_cart", preferredLanguage)}
+              </button>
             </div>
           </div>
         </Box>
