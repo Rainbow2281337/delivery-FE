@@ -156,10 +156,10 @@ const UserTableComponent = () => {
           <div className="flex gap-1 mt-2">
             <div
               title="Add user"
-              className="cursor-pointer"
+              className="cursor-pointer text-green-500"
               onClick={handleModal}
             >
-              <AddIcon color="success" fontSize="large" />
+              <AddIcon fontSize="large" />
             </div>
             <div
               title="Refresh"

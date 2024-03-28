@@ -17,8 +17,12 @@ import { deleteDish } from "../../../../api/deleteDish";
 import SkeletonComponent from "../../../ui/SkeletonComponent";
 import Container from "../../../Container";
 import NoMatches from "../../../NoMatches";
+import { AddOutlined } from "@mui/icons-material";
+import { useState } from "react";
+import AdminAddDishComponent from "../../Modal/AdminAddDishComponent";
 
 const DishTable = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { id } = useParams();
   const dispatch = useDispatch<AppDispatch>();
 
@@ -29,6 +33,10 @@ const DishTable = () => {
   const preferredLanguage = useSelector<RootState, string>(
     (state) => state.setLanguage.currentLanguage
   );
+
+  const handleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
 
   const handleDishDelete = (
     restaurantId: string | undefined,
@@ -133,6 +141,13 @@ const DishTable = () => {
           <div>
             <div className="flex mt-2">
               <div
+                title="Add"
+                className="cursor-pointer text-green-500"
+                onClick={handleModal}
+              >
+                <AddOutlined fontSize="large" />
+              </div>
+              <div
                 title="Refresh"
                 className="cursor-pointer dark:text-white"
                 onClick={handleRefresh}
@@ -149,9 +164,30 @@ const DishTable = () => {
               <SkeletonComponent />
             </div>
           ) : (
-            <NoMatches title="No food found" subtitle="Try again later" />
+            <div>
+              <div className="flex mt-2">
+                <div
+                  title="Add"
+                  className="cursor-pointer text-green-500"
+                  onClick={handleModal}
+                >
+                  <AddOutlined fontSize="large" />
+                </div>
+                <div
+                  title="Refresh"
+                  className="cursor-pointer dark:text-white"
+                  onClick={handleRefresh}
+                >
+                  <RefreshIcon fontSize="large" />
+                </div>
+              </div>
+              <NoMatches title="No food found" subtitle="Try again later" />
+            </div>
           )}
         </div>
+      )}
+      {isModalOpen && (
+        <AdminAddDishComponent isOpen={isModalOpen} handleModal={handleModal} />
       )}
     </Container>
   );
