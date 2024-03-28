@@ -3,6 +3,7 @@ import Registration from "../pages/Registration/Registration";
 import {
   ADMIN_DASHBOARD_ROUTE,
   ADMIN_RESTAURANTS_ROUTE,
+  ADMIN_RESTAURANT_DISHES_ROUTE,
   ADMIN_ROUTE,
   DEFAULT_ROUTE,
   PROFILE_DEACTIVATE_ACCOUNT_ROUTE,
@@ -25,6 +26,7 @@ import DeactivateAccountPage from "../pages/Profile/DeactivateAccountPage";
 import PreferencesPage from "../pages/Profile/PreferencesPage";
 import DashboardPage from "../pages/Admin/DashboardPage";
 import OrdersPage from "../pages/Orders/OrdersPage";
+import AdminRestaurantDishPage from "../pages/Admin/AdminRestaurantDishPage";
 
 export const authRoutes: RouteItem[] = [
   {
@@ -65,6 +67,10 @@ export const adminRoutes: RouteItem[] = [
   {
     path: ADMIN_RESTAURANTS_ROUTE,
     Component: AdminRestaurantsPage,
+  },
+  {
+    path: ADMIN_RESTAURANT_DISHES_ROUTE + "/:id",
+    Component: AdminRestaurantDishPage,
   },
   {
     path: ADMIN_DASHBOARD_ROUTE,

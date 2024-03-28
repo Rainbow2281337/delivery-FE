@@ -73,5 +73,8 @@
 	"minutes": "хвилин",
 	"average_waiting_time": "Середній час очікування",
 	"cancel_order": "Відмінити замовлення",
-	"place_feedback": "Залишити відгук"
+	"weight": "Вага",
+	"description": "Опис",
+	"calories": "Калорії",
+	"category": "Категорія"
 }

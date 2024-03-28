@@ -73,5 +73,9 @@
 	"minutes": "minutes",
 	"average_waiting_time": "Average waiting time",
 	"cancel_order": "Cancel order",
-	"place_feedback": "Place feedback"
+	"place_feedback": "Place feedback",
+	"weight": "Weight",
+	"description": "Description",
+	"calories": "Calories",
+	"category": "Category"
 }

@@ -22,8 +22,11 @@ import AdminModalAddRestaurantComponent from "../../Modal/AdminModalAddRestauran
 import Container from "../../../Container";
 import { translate } from "../../../../assets/i18n";
 import { CSVDownload } from "react-csv";
+import { useNavigate } from "react-router-dom";
+import { ADMIN_RESTAURANT_DISHES_ROUTE } from "../../../../consts";
 
 const RestaurantsTableComponent = () => {
+  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDataDownload, setIsDataDownload] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
@@ -113,7 +116,14 @@ const RestaurantsTableComponent = () => {
               {restaurants.map((restaurant) => (
                 <TableRow key={restaurant.id}>
                   <TableCell>
-                    <div className="dark:text-neutral-400">
+                    <div
+                      onClick={() =>
+                        navigate(
+                          ADMIN_RESTAURANT_DISHES_ROUTE + "/" + restaurant.id
+                        )
+                      }
+                      className="dark:text-neutral-400 cursor-pointer underline"
+                    >
                       {restaurant.title}
                     </div>
                   </TableCell>
