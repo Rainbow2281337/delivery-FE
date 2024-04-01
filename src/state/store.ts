@@ -13,6 +13,7 @@ import addReviewReducer from "./review/add-review.slice"; // remove
 import getDishesReducer from "./restaurant/dish/dish-slice";
 import themeSwitchReducer from "./theme/theme-switcher-slice";
 import languageSelectReducer from "./language/select-language-slice";
+import cartReducer from "./order/cartSlice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   getDishes: getDishesReducer,
   theme: themeSwitchReducer,
   setLanguage: languageSelectReducer,
+  cart: cartReducer,
 });
 
 export const store = configureStore({

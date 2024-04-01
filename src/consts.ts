@@ -13,6 +13,7 @@ export const ADMIN_RESTAURANT_DISHES_ROUTE: string = "/admin/restaurant";
 export const ADMIN_DASHBOARD_ROUTE: string = "/admin/dashboard";
 export const RESTAURANTS_ROUTE: string = "/restaurants";
 export const RESTAURANT_ROUTE: string = "/restaurant";
+export const CART_ROUTE: string = "/cart";
 
 // PROXY
 export const PROXY: string = "http://localhost:3000/";

@@ -1,13 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import { RESTAURANTS_ROUTE } from "../../consts";
+import { CART_ROUTE, RESTAURANTS_ROUTE } from "../../consts";
 import { translate } from "../../assets/i18n";
 import { useSelector } from "react-redux";
 import { RootState } from "../../state/store";
+import { CartItem } from "../../interfaces/cart-interface";
 
 const Search = () => {
   const navigate = useNavigate();
   const preferredLanguage = useSelector<RootState, string>(
     (state) => state.setLanguage.currentLanguage
+  );
+  const cartItems = useSelector<RootState, CartItem[]>(
+    (state) => state.cart.items
   );
   return (
     <div
@@ -45,10 +49,8 @@ const Search = () => {
           {translate("shop", preferredLanguage)}
         </div>
         <div
-          onClick={() => navigate("*")}
+          onClick={() => navigate(CART_ROUTE)}
           className="
-			hidden
-			sm:block
 			text-sm
 			font-semibold
 			px-6
@@ -57,7 +59,12 @@ const Search = () => {
 			text-center
 		"
         >
-          {translate("cart", preferredLanguage)}
+          <div className="flex items-center gap-4">
+            {translate("cart", preferredLanguage)}
+            <span className="text-md text-neutral-500 dark:text-neutral-400">
+              {cartItems.length}
+            </span>
+          </div>
         </div>
       </div>
     </div>

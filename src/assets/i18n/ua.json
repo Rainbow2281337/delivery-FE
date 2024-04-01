@@ -79,5 +79,14 @@
 	"category": "Категорія",
 	"gram": "Грам",
 	"kcal": "Ккалорій",
-	"add_to_cart": "Додати до кошика"
+	"add_to_cart": "Додати до кошика",
+	"subtotal": "Проміжний підсумок",
+	"shipping": "Доставка",
+	"total": "Загалом",
+	"quantity": "Кількість",
+	"place_order": "Оформити замовлення",
+	"cart_summary": "Підсумки кошика",
+	"shopping_cart": "Кошик",
+	"order_placed_successfully": "Замовлення оформлено успішно",
+	"error_occured": "Виникла помилка"
 }

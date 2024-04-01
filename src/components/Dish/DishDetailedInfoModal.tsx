@@ -9,6 +9,7 @@ interface DishDetailedInfoModalProps {
   dishInfo: Dish;
   isOpen: boolean;
   handleModal: () => void;
+  handleAddToCart: () => void;
 }
 
 const style = {
@@ -27,6 +28,7 @@ const DishDetailedInfoModal: React.FC<DishDetailedInfoModalProps> = ({
   dishInfo,
   isOpen,
   handleModal,
+  handleAddToCart,
 }) => {
   const preferredLanguage = useSelector<RootState, string>(
     (state) => state.setLanguage.currentLanguage
@@ -68,7 +70,10 @@ const DishDetailedInfoModal: React.FC<DishDetailedInfoModalProps> = ({
               </ul>
             </div>
             <div className="flex items-center justify-center">
-              <button className="w-full py-2 border rounded-lg bg-green-500 hover:bg-green-600 transition text-white font-medium">
+              <button
+                onClick={handleAddToCart}
+                className="w-full py-2 border rounded-lg bg-green-500 hover:bg-green-600 transition text-white font-medium"
+              >
                 {translate("add_to_cart", preferredLanguage)}
               </button>
             </div>

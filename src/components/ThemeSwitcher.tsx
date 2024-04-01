@@ -23,7 +23,8 @@ const ThemeSwitcher = () => {
       onClick={toggleDarkMode}
       title="Theme selector"
       className="
-            flex
+            hidden
+            md:flex
             items-center
             gap-2
             border

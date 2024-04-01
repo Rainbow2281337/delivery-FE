@@ -3,9 +3,11 @@ import { Dish } from "../../interfaces/dish-interface";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useState } from "react";
 import DishDetailedInfoModal from "./DishDetailedInfoModal";
-import { useSelector } from "react-redux";
-import { RootState } from "../../state/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../state/store";
 import { translate } from "../../assets/i18n";
+import { CartItem } from "../../interfaces/cart-interface";
+import { addToCart } from "../../state/order/cartSlice";
 
 interface DishItemProps {
   dish: Dish;
@@ -13,12 +15,23 @@ interface DishItemProps {
 
 const DishItem: React.FC<DishItemProps> = ({ dish }) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const dispatch = useDispatch<AppDispatch>();
   const preferredLanguage = useSelector<RootState, string>(
     (state) => state.setLanguage.currentLanguage
   );
 
   const handleModal = () => {
     setIsModalOpen(!isModalOpen);
+  };
+
+  const handleAddToCart = () => {
+    const item: CartItem = {
+      dishId: dish.id,
+      title: dish.title,
+      price: dish.price,
+      quantity: 1,
+    };
+    dispatch(addToCart(item));
   };
 
   return (
@@ -57,7 +70,7 @@ const DishItem: React.FC<DishItemProps> = ({ dish }) => {
               </span>
             </div>
             <div title="Add to cart">
-              <IconButton color="primary">
+              <IconButton onClick={handleAddToCart} color="primary">
                 <AddShoppingCartIcon />
               </IconButton>
             </div>
@@ -69,6 +82,7 @@ const DishItem: React.FC<DishItemProps> = ({ dish }) => {
           dishInfo={dish}
           isOpen={isModalOpen}
           handleModal={handleModal}
+          handleAddToCart={handleAddToCart}
         />
       )}
     </div>

@@ -80,5 +80,14 @@
 	"category": "Category",
 	"gram": "Gram",
 	"kcal": "Kcal",
-	"add_to_cart": "Add to cart"
+	"add_to_cart": "Add to cart",
+	"subtotal": "Subtotal",
+	"shipping": "Shipping",
+	"total": "Total",
+	"quantity": "Quantity",
+	"place_order": "Place order",
+	"cart_summary": "Cart summary",
+	"shopping_cart": "Shopping cart",
+	"order_placed_successfully": "Order placed successfully",
+	"error_occured": "Error occured"
 }
