@@ -4,12 +4,14 @@ import DisplaySettingsOutlinedIcon from "@mui/icons-material/DisplaySettingsOutl
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import GppBadOutlinedIcon from "@mui/icons-material/GppBadOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
+import DeliveryDiningOutlinedIcon from "@mui/icons-material/DeliveryDiningOutlined";
 import ProfileCard from "./ProfileCard";
 import Heading from "../Heading";
 import { useSelector } from "react-redux";
 import { RootState } from "../../state/store";
 import {
   ADMIN_ROUTE,
+  ORDERS_ROUTE,
   PROFILE_DEACTIVATE_ACCOUNT_ROUTE,
   PROFILE_ORDERS_ROUTE,
   PROFILE_PERSONAL_INFO_ROUTE,
@@ -69,6 +71,12 @@ const ProfileCards = () => {
       description: translate("see_my_orders", preferredLanguage),
       navigation: PROFILE_ORDERS_ROUTE,
     },
+    {
+      icon: <DeliveryDiningOutlinedIcon fontSize="large" />,
+      title: translate("available_orders", preferredLanguage),
+      description: translate("see_all_available_orders", preferredLanguage),
+      navigation: ORDERS_ROUTE,
+    },
   ];
   return (
     <Container>
@@ -93,12 +101,23 @@ const ProfileCards = () => {
         "
       >
         {profileActions
-          .filter(
-            (action) =>
-              (action.title !== "Admin panel" &&
-                action.title !== "Панель адміністратора") ||
-              role === "ADMIN"
-          )
+          .filter((action) => {
+            if (
+              action.title === "Admin panel" ||
+              action.title === "Панель адміністратора"
+            ) {
+              // Show "Admin Panel" only for admins
+              return role === "ADMIN";
+            } else if (
+              action.title === "Available orders" ||
+              action.title === "Доступні замовлення"
+            ) {
+              // Include "Available Orders" only for admins or deliverymen
+              return role === "ADMIN" || role === "DELIVERYMAN";
+            } else {
+              return true;
+            }
+          })
           .map((action) => (
             <ProfileCard
               key={action.title}

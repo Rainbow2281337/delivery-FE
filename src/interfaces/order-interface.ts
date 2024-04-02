@@ -10,3 +10,9 @@ export interface Order {
   dishTitle: string;
   dishPrice: number;
 }
+
+export interface OrderState {
+  orders: Order[] | [];
+  status: "idle" | "loading" | "succeeded" | "failed";
+  error: string | null;
+}

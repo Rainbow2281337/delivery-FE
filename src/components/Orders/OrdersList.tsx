@@ -54,14 +54,14 @@ const OrdersList = () => {
       </div>
       <div
         className="
-			pt-8
-			w-full
-			flex
-			flex-col
-			gap-2
-			items-start
-			justify-start
-		"
+          pt-8
+          w-full
+          flex
+          flex-col
+          gap-2
+          items-start
+          justify-start
+        "
       >
         {orders.map((order) => (
           <OrderItem

@@ -14,6 +14,7 @@ import getDishesReducer from "./restaurant/dish/dish-slice";
 import themeSwitchReducer from "./theme/theme-switcher-slice";
 import languageSelectReducer from "./language/select-language-slice";
 import cartReducer from "./order/cartSlice";
+import orderReducer from "./order/orderSlice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   theme: themeSwitchReducer,
   setLanguage: languageSelectReducer,
   cart: cartReducer,
+  orders: orderReducer,
 });
 
 export const store = configureStore({

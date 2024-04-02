@@ -7,6 +7,7 @@ import {
   ADMIN_ROUTE,
   CART_ROUTE,
   DEFAULT_ROUTE,
+  ORDERS_ROUTE,
   PROFILE_DEACTIVATE_ACCOUNT_ROUTE,
   PROFILE_ORDERS_ROUTE,
   PROFILE_PERSONAL_INFO_ROUTE,
@@ -29,6 +30,7 @@ import DashboardPage from "../pages/Admin/DashboardPage";
 import OrdersPage from "../pages/Orders/OrdersPage";
 import AdminRestaurantDishPage from "../pages/Admin/AdminRestaurantDishPage";
 import CartPage from "../pages/Cart/CartPage";
+import AvailableOrdersPage from "../pages/Orders/AvailableOrdersPage";
 
 export const authRoutes: RouteItem[] = [
   {
@@ -92,5 +94,12 @@ export const publicRoutes: RouteItem[] = [
   {
     path: DEFAULT_ROUTE,
     Component: Login,
+  },
+];
+
+export const deliverymanRoutes: RouteItem[] = [
+  {
+    path: ORDERS_ROUTE,
+    Component: AvailableOrdersPage,
   },
 ];

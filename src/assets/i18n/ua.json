@@ -85,8 +85,15 @@
 	"total": "Загалом",
 	"quantity": "Кількість",
 	"place_order": "Оформити замовлення",
+	"place_feedback": "Залишити відгук",
 	"cart_summary": "Підсумки кошика",
 	"shopping_cart": "Кошик",
 	"order_placed_successfully": "Замовлення оформлено успішно",
-	"error_occured": "Виникла помилка"
+	"error_occured": "Виникла помилка",
+	"available_orders": "Доступні замовлення",
+	"delivered_orders": "Доставлені замовлення",
+	"see_all_available_orders": "Подивитися всі доступні замовлення",
+	"see_more_info": "Дізнатися більше",
+	"waiting": "Приблизний час достаки",
+	"min": "хв."
 }

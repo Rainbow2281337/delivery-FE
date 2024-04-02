@@ -1,8 +1,14 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { adminRoutes, authRoutes, publicRoutes } from "../Routes/shop-routes";
+import {
+  adminRoutes,
+  authRoutes,
+  deliverymanRoutes,
+  publicRoutes,
+} from "../Routes/shop-routes";
 import { IfUserAuth, ProtectedRoute } from "./ProtectedRoute";
 import { ProtectedAdminRoute } from "./ProtectedAdminRoute";
 import { RESTAURANTS_ROUTE } from "../consts";
+import ProtectedDeliverymanRoute from "./ProtectedDeliverymanRoute";
 
 const AppRoutes = () => {
   return (
@@ -40,6 +46,18 @@ const AppRoutes = () => {
               <ProtectedAdminRoute>
                 <Component />
               </ProtectedAdminRoute>
+            }
+          />
+        ))}
+
+        {deliverymanRoutes.map(({ path, Component }) => (
+          <Route
+            key={path}
+            path={path}
+            element={
+              <ProtectedDeliverymanRoute>
+                <Component />
+              </ProtectedDeliverymanRoute>
             }
           />
         ))}

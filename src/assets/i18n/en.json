@@ -89,5 +89,11 @@
 	"cart_summary": "Cart summary",
 	"shopping_cart": "Shopping cart",
 	"order_placed_successfully": "Order placed successfully",
-	"error_occured": "Error occured"
+	"error_occured": "Error occured",
+	"available_orders": "Available orders",
+	"delivered_orders": "Delivered orders",
+	"see_all_available_orders": "See all available orders",
+	"see_more_info": "See more info",
+	"waiting": "Estimated delivery time",
+	"min": "min."
 }

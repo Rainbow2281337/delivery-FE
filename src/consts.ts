@@ -14,6 +14,7 @@ export const ADMIN_DASHBOARD_ROUTE: string = "/admin/dashboard";
 export const RESTAURANTS_ROUTE: string = "/restaurants";
 export const RESTAURANT_ROUTE: string = "/restaurant";
 export const CART_ROUTE: string = "/cart";
+export const ORDERS_ROUTE: string = "/orders";
 
 // PROXY
 export const PROXY: string = "http://localhost:3000/";
