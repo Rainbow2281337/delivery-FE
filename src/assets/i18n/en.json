@@ -96,5 +96,7 @@
 	"see_more_info": "See more info",
 	"waiting": "Estimated delivery time",
 	"min": "min.",
-	"change_status": "Change status"
+	"change_status": "Change status",
+	"total_orders": "Total orders",
+	"orders_made": "Orders made"
 }
