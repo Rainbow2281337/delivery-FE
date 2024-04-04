@@ -5,6 +5,7 @@ import { RootState } from "../../../state/store";
 import { Order } from "../../../interfaces/order-interface";
 import AvailableOrderItem from "./AvailableOrderItem";
 import NoMatches from "../../NoMatches";
+import Container from "../../Container";
 
 const AvailableOrdersList = () => {
   const orders = useSelector<RootState, Order[]>(
@@ -14,7 +15,7 @@ const AvailableOrdersList = () => {
     (state) => state.setLanguage.currentLanguage
   );
   return (
-    <div>
+    <Container>
       <div>
         <Heading title={translate("available_orders", preferredLanguage)} />
       </div>
@@ -47,7 +48,7 @@ const AvailableOrdersList = () => {
             <AvailableOrderItem key={order.orderId} order={order} />
           ))}
       </div>
-    </div>
+    </Container>
   );
 };
 

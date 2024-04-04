@@ -1,59 +1,101 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Heading from "../Heading";
 import OrderItem from "./OrderItem";
-import { RootState } from "../../state/store";
+import { AppDispatch, RootState } from "../../state/store";
 import { translate } from "../../assets/i18n";
+import { useEffect, useState } from "react";
+import { getOrderHistory } from "../../state/order/orderHistorySlice";
+import { OrderHistory } from "../../interfaces/order-interface";
+import NoMatches from "../NoMatches";
+import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
+import OutdoorGrillOutlinedIcon from "@mui/icons-material/OutdoorGrillOutlined";
+import DeliveryDiningOutlinedIcon from "@mui/icons-material/DeliveryDiningOutlined";
+import WhereToVoteOutlinedIcon from "@mui/icons-material/WhereToVoteOutlined";
+import CategoryBox from "../CategoryBox";
+import Container from "../Container";
 
 const OrdersList = () => {
+  const [selectedType, setSelectedType] = useState<string | undefined>("");
+  const dispatch = useDispatch<AppDispatch>();
+  const orderHistory = useSelector<RootState, OrderHistory[] | []>(
+    (state) => state.orderHistory.orderHistory
+  );
   const preferredLanguage = useSelector<RootState, string>(
     (state) => state.setLanguage.currentLanguage
   );
+  const userId = useSelector<RootState, string | null>(
+    (state) => state.profileInfo.id
+  );
 
-  const getRandomNumber = (min: number, max: number) => {
-    return Math.floor(Math.random() * (max - min + 1) + min);
+  useEffect(() => {
+    const orderHistoryParams = {
+      userId: userId,
+      status: selectedType,
+    };
+    try {
+      if (userId) {
+        dispatch(getOrderHistory(orderHistoryParams));
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }, [dispatch, userId, selectedType]);
+
+  const handleTypeSelect = (type: string | undefined) => {
+    setSelectedType(type === selectedType ? "" : type);
   };
 
-  const orders = [
+  const statusFilter = [
     {
-      orderId: 1,
-      orderData: ["Salad", "Burger"],
-      orderStatus: "Processing",
-      averageWaitingTime: getRandomNumber(15, 60),
-      date: "27.03.2024",
-      totalPrice: 345,
+      title: translate("processing", preferredLanguage),
+      value: "PROCESSING",
+      icon: <AccessTimeOutlinedIcon fontSize="large" />,
     },
     {
-      orderId: 2,
-      orderData: ["Salad", "Burger"],
-      orderStatus: "Cooking",
-      averageWaitingTime: getRandomNumber(15, 60),
-      date: "27.03.2024",
-      totalPrice: 120,
+      title: translate("cooking", preferredLanguage),
+      value: "COOKING",
+      icon: <OutdoorGrillOutlinedIcon fontSize="large" />,
     },
     {
-      orderId: 3,
-      orderData: ["Salad", "Burger"],
-      orderStatus: "Delivered",
-      averageWaitingTime: getRandomNumber(15, 60),
-      date: "25.03.2024",
-      totalPrice: 235,
+      title: translate("delivery", preferredLanguage),
+      value: "DELIVERY",
+      icon: <DeliveryDiningOutlinedIcon fontSize="large" />,
     },
     {
-      orderId: 4,
-      orderData: ["Salad", "Burger"],
-      orderStatus: "Delivered",
-      averageWaitingTime: getRandomNumber(15, 60),
-      date: "20.03.2024",
-      totalPrice: 145,
+      title: translate("delivered", preferredLanguage),
+      value: "DELIVERED",
+      icon: <WhereToVoteOutlinedIcon fontSize="large" />,
     },
   ];
+
   return (
-    <div>
+    <Container>
       <div>
         <Heading title={translate("my_orders", preferredLanguage)} />
       </div>
       <div
         className="
+          pt-4
+          flex
+          flex-row
+          items-center
+          justify-between
+          overflow-x-auto
+        "
+      >
+        {statusFilter.map((item) => (
+          <div key={item.title} onClick={() => handleTypeSelect(item.value)}>
+            <CategoryBox
+              category={item.title}
+              icon={item.icon}
+              selected={selectedType === item.value}
+            />
+          </div>
+        ))}
+      </div>
+      {orderHistory && orderHistory.length > 0 ? (
+        <div
+          className="
           pt-8
           w-full
           flex
@@ -62,20 +104,15 @@ const OrdersList = () => {
           items-start
           justify-start
         "
-      >
-        {orders.map((order) => (
-          <OrderItem
-            key={order.orderId}
-            orderId={order.orderId}
-            orderData={order.orderData}
-            orderStatus={order.orderStatus}
-            averageWaitingTime={order.averageWaitingTime}
-            date={order.date}
-            totalPrice={order.totalPrice}
-          />
-        ))}
-      </div>
-    </div>
+        >
+          {orderHistory.map((order) => (
+            <OrderItem key={order.orderId} order={order} />
+          ))}
+        </div>
+      ) : (
+        <NoMatches />
+      )}
+    </Container>
   );
 };
 

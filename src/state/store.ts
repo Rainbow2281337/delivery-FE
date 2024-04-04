@@ -15,6 +15,7 @@ import themeSwitchReducer from "./theme/theme-switcher-slice";
 import languageSelectReducer from "./language/select-language-slice";
 import cartReducer from "./order/cartSlice";
 import orderReducer from "./order/orderSlice";
+import orderHistoryReducer from "./order/orderHistorySlice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -33,6 +34,7 @@ const rootReducer = combineReducers({
   setLanguage: languageSelectReducer,
   cart: cartReducer,
   orders: orderReducer,
+  orderHistory: orderHistoryReducer,
 });
 
 export const store = configureStore({

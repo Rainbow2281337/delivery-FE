@@ -12,6 +12,7 @@ import { RootState } from "../../../state/store";
 import { useState } from "react";
 import { getMoreInfoAboutOrder } from "../../../api/getMoreInfoAboutOrder";
 import { changeOrderStatus } from "../../../api/changeOrderStatus";
+import { formatTimestamp } from "../../../helpers/formatTimeStamp";
 
 interface AvailableOrderItemProps {
   order: Order;
@@ -34,16 +35,6 @@ const AvailableOrderItem: React.FC<AvailableOrderItemProps> = ({ order }) => {
     } catch (error) {
       console.error(error);
     }
-  };
-
-  const formatTimestamp = (timestampInMs: number) => {
-    const date = new Date(timestampInMs);
-    const formattedDate = date.toLocaleDateString("de-DE", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    });
-    return formattedDate;
   };
 
   const calculateTotalPrice = (data: Order[] | undefined) => {
@@ -71,7 +62,6 @@ const AvailableOrderItem: React.FC<AvailableOrderItemProps> = ({ order }) => {
         console.error("Unexpected order status:", status);
         return;
     }
-    console.log(status);
 
     try {
       await changeOrderStatus(orderId, status);

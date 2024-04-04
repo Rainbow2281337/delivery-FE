@@ -11,6 +11,28 @@ export interface Order {
   dishPrice: number;
 }
 
+export interface OrderHistory {
+  orderId: string;
+  entries: [
+    {
+      orderId: string;
+      status: string;
+      averageWaitingTimeMinutes: number;
+      orderTimestamp: number;
+      dishId: string;
+      dishTitle: string;
+      dishPrice: number;
+      dishCalories: number;
+    }
+  ];
+}
+
+export interface OrderHistoryState {
+  orderHistory: OrderHistory[] | [];
+  status: "idle" | "loading" | "succeeded" | "failed";
+  error: string | null;
+}
+
 export interface OrderState {
   orders: Order[] | [];
   status: "idle" | "loading" | "succeeded" | "failed";

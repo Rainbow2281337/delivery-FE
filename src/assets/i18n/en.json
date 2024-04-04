@@ -98,5 +98,9 @@
 	"min": "min.",
 	"change_status": "Change status",
 	"total_orders": "Total orders",
-	"orders_made": "Orders made"
+	"orders_made": "Orders made",
+	"processing": "Processing",
+	"cooking": "Cooking",
+	"delivery": "Delivery",
+	"delivered": "Delivered"
 }

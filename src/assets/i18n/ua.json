@@ -98,5 +98,9 @@
 	"min": "хв.",
 	"change_status": "Змінити статус",
 	"total_orders": "Кількість замовлень",
-	"orders_made": "Зроблено замовлень"
+	"orders_made": "Зроблено замовлень",
+	"processing": "Обробка",
+	"cooking": "Приготуваня",
+	"delivery": "Доставка",
+	"delivered": "Доставлено"
 }
