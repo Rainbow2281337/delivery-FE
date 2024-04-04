@@ -12,6 +12,7 @@ const Container: React.FC<ContainerProps> = ({ children }) => {
 			md:px-10
 			sm:px-2
 			px-4
+      dark:bg-neutral-900
 	  	"
     >
       {children}

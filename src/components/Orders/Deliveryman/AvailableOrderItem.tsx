@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../state/store";
 import { useState } from "react";
 import { getMoreInfoAboutOrder } from "../../../api/getMoreInfoAboutOrder";
+import { changeOrderStatus } from "../../../api/changeOrderStatus";
 
 interface AvailableOrderItemProps {
   order: Order;
@@ -53,6 +54,30 @@ const AvailableOrderItem: React.FC<AvailableOrderItemProps> = ({ order }) => {
       return totalPrice;
     }
     return 0;
+  };
+
+  const handleClickChangeStatus = async (orderId: string, status: string) => {
+    switch (status) {
+      case "PROCESSING":
+        status = "COOKING";
+        break;
+      case "COOKING":
+        status = "DELIVERY";
+        break;
+      case "DELIVERY":
+        status = "DELIVERED";
+        break;
+      default:
+        console.error("Unexpected order status:", status);
+        return;
+    }
+    console.log(status);
+
+    try {
+      await changeOrderStatus(orderId, status);
+    } catch (error) {
+      console.error(error);
+    }
   };
   return (
     <div className="w-full">
@@ -134,7 +159,7 @@ const AvailableOrderItem: React.FC<AvailableOrderItemProps> = ({ order }) => {
                 </div>
               </div>
             ))}
-          <div className="mt-4 flex items-center gap-2">
+          <div className="mb-2 flex items-center gap-2">
             <div
               title={`${translate("total", preferredLanguage)}`}
               className="dark:text-white"
@@ -145,6 +170,18 @@ const AvailableOrderItem: React.FC<AvailableOrderItemProps> = ({ order }) => {
               ₴{calculateTotalPrice(orderMoreData)}
             </span>
           </div>
+          {order.status !== "DELIVERED" && (
+            <div className="mb-2 border dark:border-neutral-600 py-1 px-4 rounded-xl hover:opacity-70 transition">
+              <button
+                onClick={() =>
+                  handleClickChangeStatus(order.orderId, order.status)
+                }
+                className="dark:text-white"
+              >
+                {translate("change_status", preferredLanguage)}
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
