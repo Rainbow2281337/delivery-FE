@@ -105,8 +105,8 @@ const OrdersList = () => {
           justify-start
         "
         >
-          {orderHistory.map((order) => (
-            <OrderItem key={order.orderId} order={order} />
+          {orderHistory.map((order, index) => (
+            <OrderItem key={index} order={order} />
           ))}
         </div>
       ) : (

@@ -23,11 +23,8 @@ const OrderItem: React.FC<OrderItemProps> = ({ order }) => {
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreOutlinedIcon />}>
           <div className="flex flex-col items-start justify-start">
-            {order.entries.map((order) => (
-              <div
-                key={order.dishId}
-                className="flex flex-col items-start gap-1"
-              >
+            {order.entries.map((order, index) => (
+              <div key={index} className="flex flex-col items-start gap-1">
                 <div className="mt-2 font-semibold text-md text-neutral-500">
                   {formatTimestamp(order.orderTimestamp)}
                 </div>
@@ -55,9 +52,9 @@ const OrderItem: React.FC<OrderItemProps> = ({ order }) => {
         <AccordionDetails>
           <div>
             <ul className="flex flex-col gap-3">
-              {order.entries.map((order) => (
-                <div className="flex flex-col gap-1">
-                  <li key={order.dishId} className="w-40 border-b pb-1">
+              {order.entries.map((order, index) => (
+                <div key={index} className="flex flex-col gap-1">
+                  <li className="w-40 border-b pb-1">
                     <span className="text-lg md:text-xl font-medium">
                       {order.dishTitle}{" "}
                     </span>
